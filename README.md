@@ -1,7 +1,5 @@
 # Achievo
 
-![Logo Achievo](./public/storage/achievo-logo.svg)
-
 Achievo adalah aplikasi web yang dirancang untuk melacak dan mengelola pencapaian pribadi atau tim secara efisien. Aplikasi ini dibangun menggunakan Laravel sebagai kerangka backend dan Tailwind CSS untuk desain UI yang modern dan responsif.
 
 ---
