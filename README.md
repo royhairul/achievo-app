@@ -59,7 +59,7 @@ Sebelum memulai instalasi Achievo, pastikan sistem Anda memenuhi persyaratan ber
 Clone repository dari GitHub:
 
 ```bash
-git clone https://github.com/your-username/achievo.git
+git clone https://github.com/royhairul/achievo-app.git
 cd achievo
 ```
 
