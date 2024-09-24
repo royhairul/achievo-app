@@ -10,7 +10,11 @@
 <body>
   <div class="container h-screen flex">
     <div class="p-20 bg-sky-950 w-1/3 h-screen flex flex-col justify-between">
-      <div class="logo"><img class="h-5 w-auto" src="{{asset('storage/achievo-logo.svg')}}" alt=""></div>
+      <div class="logo">
+        <a href="/">
+          <img class="h-5 w-auto" src="{{asset('storage/achievo-logo.svg')}}" alt="">
+        </a>
+      </div>
       <div class="headline text-white">
         <h4 class="text-xl">Selamat Datang</h4>
         <h4 class="text-4xl">Sang <b class="italic">Juara</b></h4>
