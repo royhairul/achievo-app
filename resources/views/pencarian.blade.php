@@ -45,7 +45,7 @@
             <h2 class="text-2xl font-semibold text-white">Ayo Eksplorasi!</h2>
 
             <form class="relative">
-                <input type="text" name="cari-lomba" id="cari-lomba"
+                <input type="text" name="cari" id="cari"
                     class="block w-full my-5 rounded-md border-0 px-4 py-3 pl-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-300 placeholder:text-sm"
                     placeholder="Cari Lomba atau Kompetisi...">
                 <div class="absolute top-3 right-5 flex space-x-2">
@@ -85,7 +85,7 @@
 
             <div>
 
-                <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+                <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0 justify-start">
                     <div class="group relative">
                         <div
                             class="relative h-50 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
@@ -93,69 +93,27 @@
                                 alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug."
                                 class="h-full w-full object-cover object-center">
                             <div
-                                class="absolute z-40 right-0 bottom-0 bg-sky-500 py-1.5 px-4 rounded-tl-lg flex align-center gap-2 font-medium text-sm">
-                                <span class="block material-symbols-rounded">
-                                    event
-                                </span>
-                                <span class="self-center">
-                                    20 Januari 2024
-                                </span>
+                                class="absolute z-40 right-0 bottom-0 text-sky-950 bg-sky-500 p-4 rounded-tl-lg flex items-center gap-4">
+                                <p class="block material-symbols-rounded text-3xl">event</p>
+                                <div>
+                                    <p class="text-xs">
+                                        Batas Pendaftaran
+                                    </p>
+                                    <p class="text-base font-bold">
+                                        20 Januari 2024
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <h3 class="mt-2 text-sm text-gray-500">
-                            <a href="#">
-                                <span class="absolute inset-0"></span>
+                        <p>
+                            <a href="#"
+                                class="my-2 inline-flex items-center rounded-md bg-sky-500/20 py-1 px-4 text-xs font-medium text-sky-500 ring-1 ring-inset ring-sky-700/10 cursor-pointer">
                                 Football
                             </a>
-                        </h3>
-                        <p class="text-base font-semibold text-gray-900">Liga Sepak Bola Pelajar</p>
-                    </div>
-                    <div class="group relative">
-                        <div
-                            class="relative h-50 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-                            <img src="https://th.bing.com/th/id/R.d5c8f5486a0a7b9a2b43dcb6e40a4953?rik=gnC2mFQFp49n%2bg&riu=http%3a%2f%2fnews.harvard.edu%2fwp-content%2fuploads%2f2019%2f04%2f042819_Chess_302_2500.jpg&ehk=QduOsy2QtRulg6Kg%2bnzjD8z92xtvciAZeZsRNLnzVV4%3d&risl=&pid=ImgRaw&r=0"
-                                class="h-full w-full object-cover object-center">
-                            <div
-                                class="absolute z-40 right-0 bottom-0 bg-sky-500 py-1.5 px-4 rounded-tl-lg flex align-center gap-2 font-medium text-sm">
-                                <span class="block material-symbols-rounded">
-                                    event
-                                </span>
-                                <span class="self-center">
-                                    19 Maret 2024
-                                </span>
-                            </div>
-                        </div>
-                        <h3 class="mt-2 text-sm text-gray-500">
-                            <a href="#">
-                                <span class="absolute inset-0"></span>
-                                Chess Competition
-                            </a>
-                        </h3>
-                        <p class="text-base font-semibold text-gray-900">Lomba Catur se-Banyuwangi</p>
-                    </div>
-                    <div class="group relative">
-                        <div
-                            class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-                            <img src="https://sa.kapamilya.com/absnews/abscbnnews/media/2022/life/10/20/20221020-mpl-philippines-2.jpg"
-                                alt="Collection of four insulated travel bottles on wooden shelf."
-                                class="h-full w-full object-cover object-center">
-                            <div
-                                class="absolute z-40 right-0 bottom-0 bg-sky-500 py-1.5 px-4 rounded-tl-lg flex align-center gap-2 font-medium text-sm">
-                                <span class="block material-symbols-rounded">
-                                    event
-                                </span>
-                                <span class="self-center">
-                                    09 Juni 2024
-                                </span>
-                            </div>
-                        </div>
-                        <h3 class="mt-2 text-sm text-gray-500">
-                            <a href="#">
-                                <span class="absolute inset-0"></span>
-                                Esports
-                            </a>
-                        </h3>
-                        <p class="text-base font-semibold text-gray-900">Esports Competition Season 2</p>
+                        </p>
+                        <a href="/detail" class="text-base font-semibold text-sky-950">Liga Sepak Bola Pelajar
+                            se-Provinsi</a>
+                        <p class="text-sm font-semibold text-sky-500">PSSI</p>
                     </div>
                 </div>
             </div>
