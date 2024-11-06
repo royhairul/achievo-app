@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -14,7 +16,8 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('login'); // Sesuaikan dengan nama view form login Anda
+        // Menampilkan Halaman Formulir Login
+        return view('login');
     }
 
 
@@ -26,32 +29,60 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+        $customMessages = [
+            'required' => ':attribute harus terisi.'
+        ];
+
         // Validasi input
         $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
+            'username' => 'required',
+            'password' => 'required'
+        ], $customMessages);
 
-        // Mencoba melakukan autentikasi berdasarkan username dan password
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Jika login berhasil, cek tipe rule (peserta atau penyelenggara)
+            // Simpan informasi user dalam session
+            $request->session()->regenerate();
+
             $user = Auth::user();
-            
-            if ($user->rule === 'peserta') {
-                dd('Sebagai peserta');
-            } elseif ($user->rule === 'penyelenggara') {
-                // Redirect ke dashboard penyelenggara atau halaman yang sesuai
-                dd('Sebagai penyelenggara');
-                // return redirect()->intended('/penyelenggara-dashboard');
+
+            // Cek tipe rule (peserta atau penyelenggara)
+            if ($user->hasRole('penyelenggara')) {
+                return redirect()->route('penyelenggaraIndexRoute');
+            } else {
+                return redirect()->route('pesertaIndexRoute');
+            }
+        } else {
+            // Cek apakah username ada di database
+            $user = User::where('username', $request->input('username'))->first();
+
+            // Jika user ditemukan, berarti password salah
+            if ($user) {
+                return back()->withErrors([
+                    'password' => 'Password Anda salah.',
+                ])->onlyInput('username');
+            } else {
+                // Jika user tidak ditemukan, berarti username salah
+                return back()->withErrors([
+                    'username' => 'Username tidak ditemukan.',
+                ])->onlyInput('username');
             }
         }
-
-        // Jika login gagal, kembalikan ke halaman login dengan pesan error
-        return back()->withErrors([
-            'username' => 'Username atau password Anda salah.',
-        ])->onlyInput('username');
     }
 
+
+    /**
+     * Menangani proses login.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('loginRoute');
+    }
 }

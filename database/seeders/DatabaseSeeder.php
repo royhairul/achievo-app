@@ -11,15 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Seeder Role and Permission
+        $this->call(RolePermissionSeeder::class);
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        $this->call(UserSeeder::class);
         $this->call(PesertaSeeder::class);
         $this->call(PenyelenggaraSeeder::class);
+        $this->call(UserSeeder::class); // UserSeeder harus dibawah Seeder Peserta dan Penyelenggara
     }
 }

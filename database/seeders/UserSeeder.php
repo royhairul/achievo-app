@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Penyelenggara;
+use App\Models\Peserta;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -15,41 +16,32 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = [
-            [
-                'username' => 'peserta1',
-                'password' => Hash::make('password123'), // Anda bisa mengganti dengan password yang lebih kuat
-                'rule' => 'peserta',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'username' => 'penyelenggara1',
-                'password' => Hash::make('password123'),
-                'rule' => 'penyelenggara',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'username' => 'peserta2',
-                'password' => Hash::make('password123'),
-                'rule' => 'peserta',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'username' => 'penyelenggara2',
-                'password' => Hash::make('password123'),
-                'rule' => 'penyelenggara',
-                'remember_token' => Str::random(10),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        ];
+        // Ambil semua peserta dan penyelenggara
+        $dataPeserta = Peserta::all();
+        $dataPenyelenggara = Penyelenggara::all();
 
-        User::insert($users);
+        foreach ($dataPeserta as $peserta) {
+            User::create([
+                'username' => strtolower(str_replace(' ', '_', $peserta->peserta_nama)), // Misalnya: "budi_santoso"
+                'password' => 'password123',
+                'rule' => 'peserta',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'user_id' => $peserta->peserta_id, // Mengaitkan dengan ID peserta
+            ])->assignRole('peserta');
+        }
+
+        foreach ($dataPenyelenggara as $penyelenggara) {
+            User::create([
+                'username' => strtolower(str_replace(' ', '_', $penyelenggara->penyelenggara_nama)), // Misalnya: "event_organizer_x"
+                'password' => 'password123',
+                'rule' => 'penyelenggara',
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'user_id' => $penyelenggara->penyelenggara_id, // Mengaitkan dengan ID penyelenggara
+            ])->assignRole('penyelenggara');
+        }
     }
 }

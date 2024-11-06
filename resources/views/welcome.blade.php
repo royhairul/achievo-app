@@ -5,39 +5,14 @@
     <title>Achievo | Selamat Datang</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
     <div class="bg-white">
-        <header class="absolute inset-x-0 top-0 z-50">
-            <nav class="flex items-center justify-between p-6 lg:px-8 pt-10" aria-label="Global">
-                <div class="flex lg:flex-1">
-                    <a href="/" class="-m-1.5 p-1.5">
-                        <span class="sr-only">Achievo</span>
-                        <img class="h-5 w-auto" src="{{ asset('storage/achievo-logo.svg') }}" alt="">
-                    </a>
-                </div>
-                <div class="hidden lg:flex lg:gap-x-12">
-                    <a href="{{ route('welcomeRoute') }}"
-                        class="text-sm font-semibold leading-6 text-sky-500 hover:text-sky-500 transition-all">Beranda</a>
-                    <a href="{{ route('pencarianRoute') }}"
-                        class="text-sm font-semibold leading-6 text-sky-950 hover:text-sky-500 transition-all">Eksplorasi</a>
-                    <a href="{{ route('tentangRoute') }}"
-                        class="text-sm font-semibold leading-6 text-sky-950 hover:text-sky-500 transition-all">Tentang</a>
-                </div>
-                <div class="lg:flex lg:flex-1 lg:justify-end gap-2">
-                    <a href="{{ route('registerRoute') }}"
-                        class="rounded-md bg-sky-100 px-6 py-2 text-sm font-semibold text-sky-500 hover:bg-sky-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 hover:shadow-lg shadow-sky-400 transition-all">
-                        Register
-                    </a>
-                    <a href="{{ route('loginRoute') }}"
-                        class="rounded-md bg-sky-500 px-6 py-2 text-sm font-semibold text-white hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 hover:shadow-lg shadow-sky-400 transition-all">
-                        Login
-                    </a>
-                </div>
-            </nav>
-        </header>
+        <div class="absolute inset-x-0 top-0 z-50">
+            <x-navbar type="welcome" is-login="{{ Auth::check() }}"></x-navbar>
+        </div>
 
         <div class="relative isolate px-6 pt-14 lg:px-8">
             <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -83,6 +58,114 @@
                 aria-hidden="true">
                 <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#fbbf24] to-[#22d3ee] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
                     style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-24 sm:py-32">
+        <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+            <h2 class="text-center text-base/7 font-semibold text-sky-500">Achievo: Portal Lomba dan Manajemen Prestasi
+            </h2>
+            <p
+                class="mx-auto mt-2 max-w-lg text-pretty text-center text-4xl font-medium tracking-tight text-sky-950 sm:text-5xl">
+                Wujudkan impianmu sekarang juga!
+            </p>
+            <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+                <div class="relative lg:row-span-2">
+                    <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
+                    <div
+                        class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+                        <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
+                            <p class="mt-2 text-lg/7 font-medium tracking-tight text-sky-950 max-lg:text-center">Mobile
+                                friendly</p>
+                            <p class="mt-2 max-w-lg text-sm/6 text-sky-600 max-lg:text-center">Anim aute id magna
+                                aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.</p>
+                        </div>
+                        <div
+                            class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
+                            <div
+                                class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl">
+                                <img class="size-full object-cover object-top"
+                                    src="https://tailwindui.com/plus/img/component-images/bento-03-mobile-friendly.png"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]">
+                    </div>
+                </div>
+                <div class="relative max-lg:row-start-1">
+                    <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+                    <div
+                        class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+                        <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                            <p class="mt-2 text-lg/7 font-medium tracking-tight text-sky-950 max-lg:text-center">
+                                Performance</p>
+                            <p class="mt-2 max-w-lg text-sm/6 text-sky-600 max-lg:text-center">Lorem ipsum, dolor sit
+                                amet consectetur adipisicing elit maiores impedit.</p>
+                        </div>
+                        <div
+                            class="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
+                            <img class="w-full max-lg:max-w-xs"
+                                src="https://tailwindui.com/plus/img/component-images/bento-03-performance.png"
+                                alt="">
+                        </div>
+                    </div>
+                    <div
+                        class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-t-[2rem]">
+                    </div>
+                </div>
+                <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+                    <div class="absolute inset-px rounded-lg bg-white"></div>
+                    <div
+                        class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
+                        <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                            <p class="mt-2 text-lg/7 font-medium tracking-tight text-sky-950 max-lg:text-center">
+                                Security</p>
+                            <p class="mt-2 max-w-lg text-sm/6 text-sky-600 max-lg:text-center">Morbi viverra dui mi
+                                arcu sed. Tellus semper adipiscing suspendisse semper morbi.</p>
+                        </div>
+                        <div class="flex flex-1 items-center [container-type:inline-size] max-lg:py-6 lg:pb-2">
+                            <img class="h-[min(152px,40cqw)] object-cover object-center"
+                                src="https://tailwindui.com/plus/img/component-images/bento-03-security.png"
+                                alt="">
+                        </div>
+                    </div>
+                    <div class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
+                </div>
+                <div class="relative lg:row-span-2">
+                    <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]">
+                    </div>
+                    <div
+                        class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
+                        <div class="px-8 pb-3 pt-8 sm:px-10 sm:pb-0 sm:pt-10">
+                            <p class="mt-2 text-lg/7 font-medium tracking-tight text-sky-950 max-lg:text-center">
+                                Powerful APIs</p>
+                            <p class="mt-2 max-w-lg text-sm/6 text-sky-600 max-lg:text-center">Sit quis amet rutrum
+                                tellus ullamcorper ultricies libero dolor eget sem sodales gravida.</p>
+                        </div>
+                        <div class="relative min-h-[30rem] w-full grow">
+                            <div
+                                class="absolute bottom-0 left-10 right-0 top-10 overflow-hidden rounded-tl-xl bg-gray-900 shadow-2xl">
+                                <div class="flex bg-gray-800/40 ring-1 ring-white/5">
+                                    <div class="-mb-px flex text-sm font-medium leading-6 text-sky-400">
+                                        <div
+                                            class="border-b border-r border-b-white/20 border-r-white/10 bg-white/5 px-4 py-2 text-white">
+                                            NotificationSetting.jsx</div>
+                                        <div class="border-r border-gray-600/10 px-4 py-2">App.jsx</div>
+                                    </div>
+                                </div>
+                                <div class="px-6 pb-14 pt-6">
+                                    <!-- Your code example -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]">
+                    </div>
                 </div>
             </div>
         </div>

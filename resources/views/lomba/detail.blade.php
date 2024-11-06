@@ -11,80 +11,225 @@
 </head>
 
 <body>
-    <div class="bg-white">
-        <header>
-            <nav class="flex items-center justify-between p-6 lg:px-8 pt-10" aria-label="Global">
-                <div class="flex lg:flex-1">
-                    <a href="/" class="-m-1.5 p-1.5">
-                        <span class="sr-only">Achievo</span>
-                        <img class="h-5 w-auto" src="{{ asset('storage/achievo-logo.svg') }}" alt="">
-                    </a>
-                </div>
-                <div class="hidden lg:flex lg:gap-x-12">
-                    <a href="{{ route('welcomeRoute') }}"
-                        class="text-sm font-semibold leading-6 text-sky-950 hover:text-sky-500 transition-all">Beranda</a>
-                    <a href="{{ route('pencarianRoute') }}"
-                        class="text-sm font-semibold leading-6 text-sky-500 hover:text-sky-500 transition-all">Eksplorasi</a>
-                    <a href="{{ route('tentangRoute') }}"
-                        class="text-sm font-semibold leading-6 text-sky-950 hover:text-sky-500 transition-all">Tentang</a>
-                </div>
-                <div class="lg:flex lg:flex-1 lg:justify-end gap-2">
-                    <a href="{{ route('registerRoute') }}"
-                        class="rounded-md bg-sky-100 px-6 py-2 text-sm font-semibold text-sky-500 hover:bg-sky-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 hover:shadow-lg shadow-sky-400 transition-all">
-                        Register
-                    </a>
-                    <a href="{{ route('loginRoute') }}"
-                        class="rounded-md bg-sky-500 px-6 py-2 text-sm font-semibold text-white hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 hover:shadow-lg shadow-sky-400 transition-all">
-                        Login
-                    </a>
-                </div>
-            </nav>
-        </header>
+    <div class="bg-white mb-10">
+        <x-navbar type="eksplorasi" is-login="{{ Auth::check() }}"></x-navbar>
 
-        <div class="px-6 mt-10 py-10 bg-gradient-to-r from-75% from-sky-950 to-sky-700">
-            <img src="https://rm.id/images/berita/med/sambut-hut-ke78-ri-ganjar-sejati-gelar-kompetisi-sepak-bola-antardesa-di-kabupaten-indramayu_183088.jpg"
-                alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug."
-                class="h-full w-full object-cover object-center">
+        <div class="relative px-6 mt-10 py-24">
+            <img src="{{ asset('images/' . $lomba->lomba_poster) }}"
+                class="absolute block top-0 left-0 h-full w-full object-cover object-center">
         </div>
+        <div class="w-full h-2 bg-gradient-to-r from-75% from-sky-950 to-sky-700"></div>
 
-        <div class="px-6 py-10">
-            <h2 class="text-xl font-semibold text-sky-950">Rekomendasi Buat Kamu</h2>
+        <div class="flex">
+            <div class="basis-2/3 wrapper px-6 py-10">
+                <h2 class="text-3xl font-semibold text-sky-950">{{ $lomba->lomba_nama }}</h2>
+                <p class="text-sm text-sky-950">
+                    Diselenggarakan oleh <a href="" class="text-sky-500 font-semibold">{{ $lomba->penyelenggara_nama }}</a>
+                </p>
 
-            <div>
-
-                <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0 justify-start">
-                    <div class="group relative">
-                        <div
-                            class="relative h-50 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-                            <img src="https://rm.id/images/berita/med/sambut-hut-ke78-ri-ganjar-sejati-gelar-kompetisi-sepak-bola-antardesa-di-kabupaten-indramayu_183088.jpg"
-                                alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug."
-                                class="h-full w-full object-cover object-center">
-                            <div
-                                class="absolute z-40 right-0 bottom-0 text-sky-950 bg-sky-500 p-4 rounded-tl-lg flex items-center gap-4">
-                                <p class="block material-symbols-rounded text-3xl">event</p>
-                                <div>
-                                    <p class="text-xs">
-                                        Batas Pendaftaran
-                                    </p>
-                                    <p class="text-base font-bold">
-                                        20 Januari 2024
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <p>
-                            <a href="#"
-                                class="my-2 inline-flex items-center rounded-md bg-sky-500/20 py-1 px-4 text-xs font-medium text-sky-500 ring-1 ring-inset ring-sky-700/10 cursor-pointer">
-                                Football
-                            </a>
-                        </p>
-                        <a href="/detail" class="text-base font-semibold text-sky-950">Liga Sepak Bola Pelajar
-                            se-Provinsi</a>
-                        <p class="text-sm font-semibold text-sky-500">PSSI</p>
+                @if(isset($pesan))
+                    <div class="mt-4 p-4 bg-red-100 text-red-600 border border-red-200 rounded">
+                        {{ $pesan }}
                     </div>
+                @endif
+
+                <ul class="mt-6 flex flex-wrap text-sm text-center">
+                    <li class="me-2">
+                        <button id="btn-deskripsi" type="button"
+                            class="inline-block px-4 py-2 text-sky-950 font-semibold bg-sky-400 rounded-md active"
+                            aria-current="page" onclick="">Deskripsi</button>
+                    </li>
+                    <li class="me-2">
+                        <button id="btn-persyaratan" type="button"
+                            class="inline-block px-4 py-2 text-gray-400 bg-gray-200 rounded-md"
+                            aria-current="page">Persyaratan</button>
+                    </li>
+
+                    <!-- masalah rating -->
+                    <li class="me-2">
+                        <button id="btn-hadiah" type="button" 
+                            class="inline-block px-4 py-2 text-gray-400 bg-gray-200 rounded-md"
+                            aria-current="page">Rating</button>
+                    </li>
+                </ul>
+
+                <div>
+                    <div id="lomba-deskripsi">
+                        <h2
+                            class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950  bg-gradient-to-r from-0% from-sky-400">
+                            Deskripsi
+                        </h2>
+                        <p class="text-base font-normal text-sky-950 opacity-80">
+                            "{{ $lomba->lomba_deskripsi }}"
+                        </p>
+                    </div>
+
+                    <div id="lomba-persyaratan" class="hidden">
+                        <h2
+                            class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950  bg-gradient-to-r from-0% from-sky-400">
+                            Persyaratan
+                        </h2>
+
+                        <dl class="divide-y divide-sky-950 divide-opacity-10">
+                            @foreach ($names as $name => $label)
+                            <dt class="text-sky-950 text-base py-2">
+                                {{ $label }}
+                            </dt>
+                            @endforeach
+                        {{-- @php
+                                $persyaratan = json_decode($lomba->lomba_persyaratan, true);
+                            @endphp
+                            @foreach ($persyaratan as $item)
+                                <dt class="text-sky-950 text-base py-2">{{ $item }}</dt>
+                            @endforeach --}}
+                        </dl>
+
+                    </div>
+
+                    <div id="lomba-hadiah" class="hidden">
+    <h2 class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950 bg-gradient-to-r from-0% from-sky-400">Rating</h2>
+
+    <!-- Tampilkan rating bintang -->
+    <div>
+    <span>
+        @for ($i = 1; $i <= 5; $i++)
+            @if ($lomba->average_rating >= $i)
+                <!-- Bintang penuh -->
+                <span style="color: gold; font-size: 24px;">★</span>
+            @elseif ($lomba->average_rating >= $i - 0.5)
+                <!-- Setengah bintang -->
+                <span style="position: relative; display: inline-block; color: gold; font-size: 24px;">
+                    <span style="position: absolute; overflow: hidden; width: 50%;">★</span>
+                    <span style="color: gray;">★</span>
+                </span>
+            @else
+                <!-- Bintang kosong -->
+                <span style="color: gray; font-size: 24px;">★</span>
+            @endif
+        @endfor
+    </span>
+    <!-- Menampilkan rata-rata rating dalam bentuk angka -->
+    <span> ({{ number_format($lomba->average_rating, 1) }})</span>
+    <span> ({{ $lomba->review_count }} pengulas)</span>
+</div>
+
+    <!-- Tampilkan ulasan berdasarkan kata yang sering digunakan -->
+    <h3>Kata yang Paling Sering Digunakan:</h3>
+    @if (!empty($lomba->most_common_words))
+        <ul>
+            @foreach ($lomba->most_common_words as $word => $count)
+                <li>{{ $word }} ({{ $count }})</li>
+            @endforeach
+        </ul>
+    @else
+        <p>Tidak ada ulasan yang tersedia.</p>
+    @endif
+</div>
+
                 </div>
             </div>
+
+            <div class="basis-1/3 wrapper px-6 py-10">
+                <h2 class="text-xl font-semibold text-sky-950">Jadwal Pelaksanaan</h2>
+
+                <ul role="list" class="mt-4 divide-y divide-gray-100 rounded-md border border-gray-200">
+                    <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                        <div class="flex w-0 flex-1 items-center">
+                            <span class="text-sky-950 material-symbols-rounded">
+                                event
+                            </span>
+                            <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                                <span class="truncate font-bold text-sky-500">
+                                    {{ Carbon\Carbon::parse($lomba->lomba_tanggal)->format('d F Y') }}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                        <div class="flex w-0 flex-1 items-center">
+                            <span class="text-sky-950 material-symbols-rounded">
+                                distance
+                            </span>
+                            <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                                <span class="truncate font-bold text-sky-500">
+                                    {{ $lomba->lomba_lokasi }}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="w-full p-4 flex items-center">
+                        <a href="{{ $lomba->lomba_tanggal >= \Carbon\Carbon::today() ? route('lombaShowFormRoute', $lomba->lomba_id) : '#' }}"
+                            class="w-full center rounded-md text-center 
+                            {{ $lomba->lomba_tanggal >= \Carbon\Carbon::today() ? 'bg-sky-500 hover:bg-sky-400' : 'bg-gray-400 cursor-not-allowed' }} 
+                            px-6 py-2 font-semibold text-white 
+                            {{ $lomba->lomba_tanggal < \Carbon\Carbon::today() ? 'opacity-50' : 'transition-all' }}"
+                            {{ $lomba->lomba_tanggal < \Carbon\Carbon::today() ? 'disabled' : '' }}>
+                            Join Lomba
+                        </a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+
+        <script>
+            const btnDeskripsi = document.querySelector('#btn-deskripsi');
+            const btnPersyaratan = document.querySelector('#btn-persyaratan');
+            const btnHadiah = document.querySelector('#btn-hadiah');
+
+            const lombaDeskripsi = document.querySelector('#lomba-deskripsi');
+            const lombaPersyaratan = document.querySelector('#lomba-persyaratan');
+            const lombaHadiah = document.querySelector('#lomba-hadiah');
+
+            // Fungsi untuk menampilkan satu konten dan menyembunyikan lainnya
+            function showTab(tabToShow) {
+                // Menyembunyikan semua konten
+                lombaDeskripsi.classList.add('hidden');
+                lombaPersyaratan.classList.add('hidden');
+                lombaHadiah.classList.add('hidden');
+
+                // Mengatur semua tombol agar tidak aktif
+                btnDeskripsi.classList.remove('bg-sky-400', 'text-sky-950', 'font-semibold');
+                btnPersyaratan.classList.remove('bg-sky-400', 'text-sky-950', 'font-semibold');
+                btnHadiah.classList.remove('bg-sky-400', 'text-sky-950', 'font-semibold');
+
+                btnDeskripsi.classList.add('text-gray-400', 'bg-gray-200');
+
+                // Menampilkan konten yang sesuai dan menambahkan kelas aktif ke tombol yang sesuai
+                switch (tabToShow) {
+                    case lombaDeskripsi:
+                        tabToShow.classList.remove('hidden');
+                        btnDeskripsi.classList.add('bg-sky-400', 'text-sky-950', 'font-semibold');
+                        break;
+                    case lombaPersyaratan:
+                        tabToShow.classList.remove('hidden');
+                        btnPersyaratan.classList.add('bg-sky-400', 'text-sky-950', 'font-semibold');
+                        break;
+                    case lombaHadiah:
+                        tabToShow.classList.remove('hidden');
+                        btnHadiah.classList.add('bg-sky-400', 'text-sky-950', 'font-semibold');
+                        break;
+                    default:
+                        console.error('Tab tidak ditemukan!');
+                        break;
+                }
+            }
+            // Event listener untuk tombol deskripsi
+            btnDeskripsi.addEventListener('click', () => {
+                showTab(lombaDeskripsi);
+            });
+
+            // Event listener untuk tombol persyaratan
+            btnPersyaratan.addEventListener('click', () => {
+                showTab(lombaPersyaratan);
+            });
+
+            // Event listener untuk tombol hadiah
+            btnHadiah.addEventListener('click', () => {
+                showTab(lombaHadiah);
+            });
+        </script>
 </body>
 
 </html>

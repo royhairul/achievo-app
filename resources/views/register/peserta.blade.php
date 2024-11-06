@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registrasi | Buat Akun Baru Achievo</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
-    @vite('resources/css/app.css')
+    @vite('resources/css/app.css', 'resources/js/app.js')
 </head>
 
 <body>
     <div class="container h-screen flex">
-        <div class="p-20 bg-sky-950 w-1/3 h-screen flex flex-col justify-between">
+        <div class="p-20 bg-sky-950 w-1/3 h-screen sm:flex flex-col justify-between hidden">
             <div class="logo"><img class="h-5 w-auto" src="{{ asset('storage/achievo-logo.svg') }}" alt="">
             </div>
             <div class="headline text-white">
@@ -31,91 +31,140 @@
                 <form class="grid grid-cols-2 gap-5" action="{{ route('registerPostPesertaRoute') }}" method="POST">
                     @csrf
                     <div>
-                        <label for="fullname" class="block text-sm font-medium leading-6 text-gray-900">Nama
-                            Lengkap</label>
-                        <div class="mt-2">
-                            <input id="fullname" name="fullname" type="fullname" autocomplete="fullname"
-                                placeholder="Masukkan Nama Anda..." required
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
+                        <label for="name" class="block text-sm font-medium leading-6 text-gray-900">
+                            Nama Lengkap
+                        </label>
+                        <div>
+                            <input id="name" name="name" type="name" autocomplete="name"
+                                value="{{ old('name') }}" placeholder="Masukkan Nama Anda..."
+                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('name')
+                                    ring-rose-600
+                                @enderror">
                         </div>
+                        @error('name')
+                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="gender" class="block text-sm font-medium leading-6 text-gray-900">Jenis
                             Kelamin</label>
-                        <div class="mt-2">
-                            <select name="" id=""
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
-                                <option selected disabled>Pilih Jenis Kelamin</option>
-                                <option value="0">Pria</option>
-                                <option value="1">Wanita</option>
+                        <div>
+                            <select name="gender" id="gender"
+                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('gender')
+                                    ring-rose-600
+                                @enderror">">
+                                <option disabled {{ old('gender') ? '' : 'selected' }}>Pilih Jenis Kelamin</option>
+                                <option value="Pria" {{ old('gender') == 'Pria' ? 'selected' : '' }}>Pria</option>
+                                <option value="Wanita" {{ old('gender') == 'Wanita' ? 'selected' : '' }}>Wanita</option>
                             </select>
                         </div>
+                        @error('gender')
+                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="birthdate" class="block text-sm font-medium leading-6 text-gray-900">Tanggal
                             Lahir</label>
-                        <div class="mt-2">
+                        <div>
                             <input datepicker datepicker-format="dd-mm-yyyy" id="birthdate" name="birthdate"
-                                type="birthdate" autocomplete="birthdate" placeholder="DD-MM-YYYY" required
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
+                                value="{{ old('birthdate') }}" type="birthdate" autocomplete="birthdate"
+                                placeholder="DD-MM-YYYY"
+                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('birthdate')
+                                    ring-rose-600
+                                @enderror">
                         </div>
+                        @error('birthdate')
+                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="study"
                             class="block text-sm font-medium leading-6 text-gray-900">Pendidikan</label>
-                        <div class="mt-2">
-                            <select name="" id=""
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
-                                <option selected disabled>Pilih Pendidikan Anda</option>
-                                <option value="SD">SD</option>
-                                <option value="SMP">SMP</option>
-                                <option value="SMA">SMA</option>
-                                <option value="PT">Perguruan Tinggi</option>
+                        <div>
+                            <select name="study" id="study"
+                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('study')ring-rose-600 @enderror">
+                                <option disabled {{ old('study') ? '' : 'selected' }}>Pilih Pendidikan Anda</option>
+                                <option value="SD" {{ old('study') == 'SD' ? 'selected' : '' }}>SD</option>
+                                <option value="SMP" {{ old('study') == 'SMP' ? 'selected' : '' }}>SMP</option>
+                                <option value="SMA" {{ old('study') == 'SMA' ? 'selected' : '' }}>SMA</option>
+                                <option value="PT" {{ old('study') == 'PT' ? 'selected' : '' }}>Perguruan Tinggi
+                                </option>
                             </select>
                         </div>
+                        @error('study')
+                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
-                        <div class="mt-2">
-                            <input id="email" name="email" type="email" autocomplete="email"
-                                placeholder="email@mail.com" required
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
+                        <div>
+                            <input id="email" name="email" type="text" autocomplete="email"
+                                value="{{ old('email') }}" placeholder="email@mail.com"
+                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('email')
+                                    ring-rose-600
+                                @enderror">
                         </div>
+                        @error('email')
+                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Nomor
                             Telepon</label>
-                        <div class="mt-2">
+                        <div>
                             <input id="phone" name="phone" type="phone" autocomplete="phone"
-                                placeholder="+62..." required
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
+                                placeholder="+62..." value="{{ old('phone') }}"
+                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('phone')
+                                    ring-rose-500
+                                @enderror">
                         </div>
+                        @error('phone')
+                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
-                        <div class="mt-2">
+                        <div>
                             <input id="username" name="username" type="text" autocomplete="username"
-                                placeholder="Buat username..." required
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
+                                value="{{ old('username') }}" placeholder="Buat username..."
+                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('username')
+                                    ring-rose-600
+                                @enderror">
                         </div>
+                        @error('username')
+                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                        <div class="mt-2">
+                        <div>
                             <input id="password" name="password" type="password" autocomplete="password"
-                                placeholder="Buat kata sandi..." required
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
+                                value="{{ old('pasasword') }}" placeholder="Buat kata sandi..."
+                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('password')
+                                    ring-rose-600
+                                @enderror">
                         </div>
+                        @error('password')
+                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-2 mt-4">
                         <button type="submit"
                             class="flex w-full justify-center rounded-md bg-sky-500 py-2 text-base font-semibold leading-6 text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 transition-all ease-in-out duration-100">
                             Buat Akun

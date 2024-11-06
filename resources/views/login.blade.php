@@ -36,12 +36,12 @@
                         <label for="username" class="block text-sm font-medium leading-6 text-sky-950">
                             Username
                         </label>
-                        <div class="mt-2">
-                            <input id="username" name="username" type="text" required
+                        <div>
+                            <input id="username" name="username" type="text" value="{{ old('username') }}"
                                 class=" relative block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
                                 @error('username') ring-rose-500 @enderror">
                             @error('username')
-                                <p class="absolute text-sm pt-1 text-rose-500">{{ $message }}</p>
+                                <p class="absolute text-sm text-rose-500">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -55,14 +55,18 @@
                                     password?</a>
                             </div>
                         </div>
-                        <div class="mt-2">
+                        <div>
                             <input id="password" name="password" type="password" autocomplete="current-password"
-                                required
-                                class="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6">
+                                value="{{ old('password') }}"
+                                class="relative block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                                @error('password') ring-rose-500 @enderror">
+                            @error('password')
+                                <p class="absolute text-sm text-rose-500">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
-                    <div>
+                    <div class="pt-2">
                         <button type="submit"
                             class="flex w-full justify-center rounded-md bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
                             Masuk

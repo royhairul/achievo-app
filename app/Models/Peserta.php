@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Peserta extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
 
     // Tentukan tabel jika berbeda dari nama konvensional (opsional)
     protected $table = 'tb_peserta';
