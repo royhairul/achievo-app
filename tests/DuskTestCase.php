@@ -6,11 +6,29 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Laravel\Dusk\TestCase as BaseTestCase;
 use PHPUnit\Framework\Attributes\BeforeClass;
 
 abstract class DuskTestCase extends BaseTestCase
 {
+    /**
+     * Daftar tabel yang akan di-truncate.
+     *
+     * @var array
+     */
+    protected $tablesToTruncate = [];
+
+    // Melakukan pemanggilan refreshDatabase
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        if (!empty($this->tablesToTruncate)) {
+            $this->refreshDatabase();
+        }
+    }
+
     /**
      * Prepare for Dusk test execution.
      */
@@ -63,5 +81,14 @@ abstract class DuskTestCase extends BaseTestCase
                 $options
             )
         );
+    }
+
+    protected function refreshDatabase()
+    {
+        if (!empty($this->tablesToTruncate)) {
+            foreach ($this->tablesToTruncate as $table) {
+                DB::table($table)->truncate();
+            }
+        }
     }
 }
