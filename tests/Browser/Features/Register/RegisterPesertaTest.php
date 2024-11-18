@@ -1,17 +1,14 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Register;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Faker\Factory as Faker;
 
 class RegisterPesertaTest extends DuskTestCase
 {
-    /**
-     * A Dusk test example.
-     */
+    protected $tablesToTruncate = ['tb_peserta'];
 
     public function test_register_peserta_empty(): void
     {
