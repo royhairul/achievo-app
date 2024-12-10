@@ -111,7 +111,7 @@ class RegisterController extends Controller
                 'remember_token' => Str::random(10)
             ];
 
-            $dbAkun = User::create($dataAkunPeserta)->assignRole('peserta');
+            $dbAkun = User::create($dataAkunPeserta)->syncRoles('peserta');
         }
 
         return redirect()->route('loginRoute');
@@ -185,14 +185,14 @@ class RegisterController extends Controller
         if ($dbPenyelenggara) {
             $dataAkunPenyelenggara = [
                 'username' => $request->username,
-                'password' => bcrypt($request->password), // Enkripsi password
+                'password' => $request->password, // Enkripsi password
                 'user_id' => $dbPenyelenggara->penyelenggara_id,
                 'rule' => 'penyelenggara', // Menandai pengguna ini sebagai penyelenggara
                 'remember_token' => Str::random(10)
             ];
 
             // Simpan akun penyelenggara dan tambahkan peran
-            $dbAkun = User::create($dataAkunPenyelenggara)->assignRole('penyelenggara');
+            $dbAkun = User::create($dataAkunPenyelenggara)->syncRoles('penyelenggara');
         }
 
         return redirect()->route('loginRoute');
