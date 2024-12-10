@@ -3,6 +3,7 @@
 use App\Http\Controllers\JawabanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LombaController;
+use App\Http\Controllers\PencarianController;
 use App\Http\Controllers\PenyelenggaraFormController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\RegisterController;
@@ -15,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', fn() => view('welcome'))->name('welcomeRoute');
 
 // Eksplorasi atau Pencarian Page
-Route::get('/pencarian', [LombaController::class, 'search'])->name('pencarianRoute');
-// Eksplorasi atau Pencarian Page
-// Route::post('/pencarian/cari', [LombaController::class, 'search'])->name('pencarianLombaRoute');
-Route::get('/pencarian/cari', [LombaController::class, 'search'])->name('pencarianLombaRoute');
+Route::get('/pencarian', [PencarianController::class, 'search'])->name('pencarianRoute');
 
 // Tentang Page
-Route::get('/tentang', fn() => view('tentang'))->name('tentangRoute');
+Route::get('/tentang', fn() => view('about'))->name('aboutRoute');
 
 // Login Route
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('loginRoute');
