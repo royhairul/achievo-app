@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-{{-- Penyelenggara Lomba --}}
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>Penyelenggara | Daftar Lomba Kamu</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('title', 'Penyelenggara | Daftar Lomba Kamu')
 
-<body>
+@section('content')
     <div class="p-4">
         <div class="p-4 pt-8 rounded-lg mt-14 gap-8">
             <div class="flex items-center justify-between">
@@ -59,6 +46,6 @@
 
         console.log(renderForm.userData)
     </script>
-</body>
+    </body>
 
-</html>
+    </html>

@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    @vite('resources/css/app.css')
-</head>
+@section('title', 'Login')
 
-<body>
+@section('content')
     <div class="container h-screen flex">
-        <div class="p-20 bg-sky-950 w-1/3 h-screen flex flex-col justify-between">
+        <div class="p-20 bg-sky-950 w-1/3 h-screen hidden lg:flex flex-col justify-between">
             <div class="logo">
                 <a href="/">
                     <img class="h-5 w-auto" src="{{ asset('storage/achievo-logo.svg') }}" alt="">
@@ -23,7 +16,7 @@
             </div>
             <h4 class="font-semibold text-sky-500">#Jad1Juara</h4>
         </div>
-        <div class="flex min-h-full w-2/3 flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="flex min-h-full w-full lg:w-2/3 flex-col justify-center px-6 py-12 lg:px-8 bg-rose">
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <h1 class="text-3xl font-bold leading-9 tracking-tight text-sky-500">Login</h1>
                 <h2 class="text-lg font-semibold text-sky-950">Masuk dengan Akunmu!</h2>
@@ -48,8 +41,7 @@
 
                     <div>
                         <div class="flex items-center justify-between">
-                            <label for="password"
-                                class="block text-sm font-medium leading-6 text-sky-950">Password</label>
+                            <label for="password" class="block text-sm font-medium leading-6 text-sky-950">Password</label>
                             <div class="text-sm">
                                 <a href="#" class="font-semibold text-sky-400 hover:text-sky-500">Lupa
                                     password?</a>
@@ -76,14 +68,11 @@
 
                 <p class="mt-10 text-sm text-sky-950">
                     Belum punya akun?
-                    <a href="{{ route('registerRoute') }}"
-                        class="font-semibold leading-6 text-sky-400 hover:text-sky-500">
+                    <a href="{{ route('registerRoute') }}" class="font-semibold leading-6 text-sky-400 hover:text-sky-500">
                         Daftar Dulu!
                     </a>
                 </p>
             </div>
         </div>
     </div>
-</body>
-
-</html>
+@endsection

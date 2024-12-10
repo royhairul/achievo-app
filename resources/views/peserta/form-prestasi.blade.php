@@ -1,4 +1,4 @@
-<!doctype html> 
+<!doctype html>
 <html>
 
 <head>
@@ -41,7 +41,8 @@
         <div class="py-8 px-14 grid grid-cols-1 gap-4 sm:grid-cols-1">
             <div class="p-4 rounded bg-gray-100 w-full">
                 @if (session('error'))
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                        role="alert">
                         <strong class="font-bold">Error: </strong>
                         <span class="block sm:inline">{{ session('error') }}</span>
                     </div>
@@ -68,7 +69,8 @@
 
                     <!-- Input Nama Penyelenggara lomba -->
                     <div class="mb-4">
-                        <label for="penyelenggara" class="block text-sm font-medium text-gray-700">Penyelenggara Perlombaan</label>
+                        <label for="penyelenggara" class="block text-sm font-medium text-gray-700">Penyelenggara
+                            Perlombaan</label>
                         <input type="text" name="penyelenggara" id="penyelenggara"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                             value="{{ old('penyelenggara') }}" required>
@@ -79,13 +81,16 @@
 
                     <!-- Input kategori lomba -->
                     <div class="mb-4">
-                        <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori Perlombaan</label>
+                        <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori
+                            Perlombaan</label>
                         <select id="kategori" name="kategori" autocomplete="kategori"
-                                class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
+                            class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
                             @error('kategori') ring-rose-600 @enderror">
                             <option value="" disabled selected>Pilih Bidang...</option>
-                            <option value="Akademik" {{ old('kategori') == 'Akademik' ? 'selected' : '' }}>Akademik</option>
-                            <option value="Non-Akademik" {{ old('kategori') == 'Non-Akademik' ? 'selected' : '' }}>Non-Akademik</option>
+                            <option value="Akademik" {{ old('kategori') == 'Akademik' ? 'selected' : '' }}>Akademik
+                            </option>
+                            <option value="Non-Akademik" {{ old('kategori') == 'Non-Akademik' ? 'selected' : '' }}>
+                                Non-Akademik</option>
                         </select>
                         @error('kategori')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -95,8 +100,8 @@
                     <!-- Input tanggal lomba -->
                     <div class="mb-4">
                         <label for="tanggal" class="block text-sm font-medium text-gray-700">Tanggal Perlombaan</label>
-                        <input datepicker datepicker-format="dd-mm-yyyy" id="tanggal" name="tanggal"
-                            type="text" autocomplete="birthdate" placeholder="DD/MM/YYYY"
+                        <input datepicker datepicker-format="dd-mm-yyyy" id="tanggal" name="tanggal" type="text"
+                            autocomplete="birthdate" placeholder="DD/MM/YYYY"
                             class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                             value="{{ old('tanggal') }}" required>
                         @error('tanggal')
@@ -128,9 +133,6 @@
                             <option value="Juara 3">Juara 3</option>
                             <option value="Juara 4-10">Juara 4-10</option>
                             <option value="Juara 11-20">Juara 11-20</option>
-                            <option value="Juara 21-50">Juara 21-50</option>
-                            <option value="Juara 51-99">Juara 51-99</option>
-                            <option value="Juara 100+">Juara 100+</option>
                         </select>
                         @error('nominasi')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -139,7 +141,8 @@
 
                     <!-- Input Sertifikat -->
                     <div class="mb-4">
-                        <label for="sertifikat" class="block text-sm font-medium text-gray-700">Upload Sertifikat</label>
+                        <label for="sertifikat" class="block text-sm font-medium text-gray-700">Upload
+                            Sertifikat</label>
                         <input type="file" name="sertifikat" id="sertifikat"
                             class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                             required>

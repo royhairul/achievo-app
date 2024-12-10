@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registrasi | Buat Akun Baru Achievo</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('title', 'Register Penyelenggara')
 
-<body>
-    <div class="container h-screen flex">
-        <div class="p-20 bg-sky-950 w-1/3 h-screen flex flex-col justify-between">
+@section('content')
+    <div class="container flex">
+        <div class="p-20 bg-sky-950 w-1/3 h-screen hidden lg:flex flex-col justify-between">
             <div class="logo"><img class="h-5 w-auto" src="{{ asset('storage/achievo-logo.svg') }}" alt="">
             </div>
             <div class="headline text-white">
@@ -20,59 +13,57 @@
             </div>
             <h4 class="font-semibold text-sky-500">#Jad1Juara</h4>
         </div>
-        <div class="flex min-h-full w-2/3 flex-col px-6 py-12 lg:px-8">
+        <div class="flex min-h-full w-full lg:w-2/3 flex-col px-6 py-12 lg:px-8">
             <div class="mt-10 sm:w-full sm:max-w-sm">
                 <h1 class="text-3xl font-bold leading-9 tracking-tight text-amber-500">Registrasi</h1>
                 <h2 class="text-base text-sky-950">Daftar sebagai <b>Pengelola Lomba</b></h2>
             </div>
 
-            <div class="mt-10 w-3/4">
-                <form class="grid grid-cols-2 gap-5" action="{{ route('registerPostPenyelenggaraRoute') }}"
-                    method="POST">
+            <div class="mt-10 w-full lg:w-3/4">
+                <form class="grid grid-cols-2 gap-5" action="{{ route('registerPostPenyelenggaraRoute') }}" method="POST">
                     @csrf
-                    <div>
+                    <div class="col-span-2 lg:col-span-1">
                         <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nama
                             Organisasi/Instansi</label>
                         <div>
                             <input id="name" name="name" type="text" autocomplete="name"
                                 value="{{ old('name') }}" placeholder="Masukkan Nama..."
                                 class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
-                                 @error('name') ring-rose-600 @enderror">
+                                @error('name') ring-rose-600 @enderror">
                             @error('name')
                                 <p class="absolute text-red-500 text-sm">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
+                    <div class="col-span-2 lg:col-span-1">
                         <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Alamat</label>
                         <div>
                             <input id="address" name="address" type="text" autocomplete="address"
                                 value="{{ old('address') }}" placeholder="Masukkan Alamat..."
                                 class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
-                                 @error('address') ring-rose-600 @enderror">
+                                @error('address') ring-rose-600 @enderror">
                             @error('address')
                                 <p class="absolute text-red-500 text-sm">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
+                    <div class="col-span-2 lg:col-span-1">
                         <label for="birthdate" class="block text-sm font-medium leading-6 text-gray-900">Tahun
                             Berdiri</label>
                         <div>
-                            <input datepicker datepicker-format="dd-mm-yyyy" id="birthdate" name="birthdate"
-                                type="text" autocomplete="birthdate" value="{{ old('birthdate') }}"
-                                placeholder="DD/MM/YYYY"
+                            <input datepicker datepicker-format="dd-mm-yyyy" id="birthdate" name="birthdate" type="text"
+                                autocomplete="birthdate" value="{{ old('birthdate') }}" placeholder="DD/MM/YYYY"
                                 class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
-                                 @error('birthdate') ring-rose-600 @enderror">
+                                @error('birthdate') ring-rose-600 @enderror">
                             @error('birthdate')
                                 <p class="absolute text-red-500 text-sm">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
+                    <div class="col-span-2 lg:col-span-1">
                         <label for="bidang" class="block text-sm font-medium leading-6 text-gray-900">Bidang</label>
                         <div>
                             <select id="bidang" name="bidang" autocomplete="bidang"
@@ -91,34 +82,34 @@
                         @enderror
                     </div>
 
-                    <div>
+                    <div class="col-span-2 lg:col-span-1">
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                         <div>
                             <input id="email" name="email" type="email" autocomplete="email"
                                 value="{{ old('email') }}" placeholder="email@mail.com"
                                 class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
-                                 @error('email') ring-rose-600 @enderror">
+                                @error('email') ring-rose-600 @enderror">
                             @error('email')
                                 <p class="absolute text-red-500 text-sm">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
+                    <div class="col-span-2 lg:col-span-1">
                         <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Nomor
                             Telepon</label>
                         <div>
                             <input id="phone" name="phone" type="text" autocomplete="phone"
                                 value="{{ old('phone') }}" placeholder="+62..."
                                 class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
-                                 @error('phone') ring-rose-600 @enderror">
+                                @error('phone') ring-rose-600 @enderror">
                             @error('phone')
                                 <p class="absolute text-red-500 text-sm">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
+                    <div class="col-span-2 lg:col-span-1">
                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
                         <div>
                             <input id="username" name="username" type="text" autocomplete="username"
@@ -133,7 +124,7 @@
                         @enderror
                     </div>
 
-                    <div>
+                    <div class="col-span-2 lg:col-span-1">
                         <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                         <div>
                             <input id="password" name="password" type="password" autocomplete="password"
@@ -168,6 +159,4 @@
         </div>
     </div>
 
-</body>
-
-</html>
+@endsection

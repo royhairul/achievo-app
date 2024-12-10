@@ -1,27 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-{{-- Penyelenggara Lomba --}}
+@extends('layouts.app')
 
-<head>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyelenggara | Daftar Lomba Kamu</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <!-- Include jQuery UI CSS and JS -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-</head>
+@section('title', 'Penyelenggara | Daftar Lomba Kamu')
 
-<body>
+@section('content')
     <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-6 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-start rtl:justify-end">
-                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
-                        aria-controls="logo-sidebar" type="button"
+                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+                        type="button"
                         class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                         <span class="sr-only">Open sidebar</span>
                         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -108,8 +95,7 @@
                     <a href=""
                         class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-sky-950 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 18">
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                             <path
                                 d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                         </svg>
@@ -120,8 +106,7 @@
                     <a href=""
                         class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-sky-950 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 18 20">
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                             <path
                                 d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                         </svg>
@@ -142,7 +127,7 @@
                     Isikan formulir berikut untuk membuat lomba.
                 </p>
             </div>
-            <div class="mt-5 w-3/4">
+            <div class="mt-2 w-3/4">
                 <form class="grid grid-cols-1 sm:grid-cols-2 gap-4" action="{{ route('penyelenggaraStoreLombaRoute') }}"
                     enctype="multipart/form-data" method="POST">
                     @csrf
@@ -150,8 +135,8 @@
                         <label for="nama" class="block text-sm font-medium leading-6 text-gray-900">
                             Nama Lomba
                         </label>
-                        <input id="nama" name="nama" type="text" autocomplete="nama"
-                            value="{{ old('nama') }}" placeholder="Masukkan Nama Lomba..."
+                        <input id="nama" name="nama" type="text" autocomplete="nama" value="{{ old('nama') }}"
+                            placeholder="Masukkan Nama Lomba..."
                             class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
                                 @error('nama')
                                     ring-rose-600
@@ -231,28 +216,26 @@
                     </div>
 
                     <div>
-                        <label class="block mb-2 text-sm font-medium text-sky-900 dark:text-white"
-                            for="file-upload">Upload file</label>
+                        <label class="block text-sm font-medium text-gray-900 dark:text-white" for="file-upload">Upload
+                            file</label>
                         <input
-                            class="block w-full text-sm text-sky-900 border border-sky-300 rounded-lg cursor-pointer bg-sky-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            class="block w-full text-sm text-sky-900 border border-gray-300 rounded-md cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="file-upload_help" id="poster-lomba" name="poster-lomba" type="file"
-                            value="{{ old('image') }}">
-                        @error('image')
+                            value="{{ old('poster-lomba') }}">
+                        @error('poster-lomba')
                             <p class="absolute text-xs text-rose-600">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
-                        <label for="desc"
-                            class="block text-sm font-medium leading-6 text-gray-900">Deskripsi</label>
-                        <textarea name="desc" id="desc" autocomplete="desc"
+                        <label for="desc" class="block text-sm font-medium text-gray-900">Deskripsi</label>
+                        <textarea name="desc" id="desc" autocomplete="desc" cols="30" rows="5"
                             class="w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
                                 @error('desc')
                                     ring-rose-600
-                                @enderror""
-                            cols="30" rows="5">
+                                @enderror">
+                                {{ old('desc') }}
                         </textarea>
-
                         @error('desc')
                             <p class="absolute text-xs text-rose-600">{{ $message }}</p>
                         @enderror
@@ -284,6 +267,5 @@
             });
         });
     </script>
-</body>
 
-</html>
+@endsection

@@ -1,16 +1,8 @@
-<!doctype html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>Achievo | Eksplorasi Lomba</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-</head>
+@section('title', 'Detail Lomba')
 
-<body>
+@section('content')
     <div class="bg-white mb-10">
         <x-navbar type='eksplorasi' is-login="{{ Auth::check() }}"></x-navbar>
         <div class="px-6">
@@ -44,7 +36,8 @@
                     </div>
                 @endif
                 <input type="hidden" name="form-render-data" id="form-render-data" value="{{ $item['form_content'] }}">
-                <form method="POST" action="{{ route('lombaStoreFormRoute', $lomba->lomba_id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('lombaStoreFormRoute', $lomba->lomba_id) }}"
+                    enctype="multipart/form-data" class="!text-sky-950/80">
                     @csrf
                     <div id="form-render" class=""></div>
                     <div class="col-span-2">
@@ -73,6 +66,4 @@
 
         console.log(renderForm.userData)
     </script>
-</body>
-
-</html>
+@endsection

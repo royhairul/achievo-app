@@ -1,18 +1,19 @@
-<!doctype html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>Achievo | Eksplorasi Lomba</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-</head>
+@section('title', 'Detail Lomba')
 
-<body>
-    <div class="bg-white mb-10">
+@section('content')
+    <div class="wrapper lg:px-24">
         <x-navbar type="eksplorasi" is-login="{{ Auth::check() }}"></x-navbar>
+
+        <div class="px-6">
+            <a href="{{ route('lombaDetailRoute', $lomba->lomba_id) }}"
+                class="flex items-center gap-2 text-sm font-semibold text-sky-500">
+                <p class="material-symbols-rounded text-xl">arrow_back</p>
+                Kembali
+            </a>
+            <h2 class="text-sky-950 font-semibold text-xl">Detail Lomba</h2>
+        </div>
 
         <div class="relative px-6 mt-10 py-24">
             <img src="{{ asset('images/' . $lomba->lomba_poster) }}"
@@ -20,15 +21,16 @@
         </div>
         <div class="w-full h-2 bg-gradient-to-r from-75% from-sky-950 to-sky-700"></div>
 
-        <div class="flex">
+        <div class="flex flex-col lg:flex-row">
             <div class="basis-2/3 wrapper px-6 py-10">
                 <h2 class="text-3xl font-semibold text-sky-950">{{ $lomba->lomba_nama }}</h2>
                 <p class="text-sm text-sky-950">
-                    Diselenggarakan oleh <a href="" class="text-sky-500 font-semibold">{{ $lomba->penyelenggara_nama }}</a>
+                    Diselenggarakan oleh <a href=""
+                        class="text-sky-500 font-semibold">{{ $lomba->penyelenggara_nama }}</a>
                 </p>
 
-                @if(isset($pesan))
-                    <div class="mt-4 p-4 bg-red-100 text-red-600 border border-red-200 rounded">
+                @if (isset($pesan))
+                    <div class="mt-4 p-2 text-sm bg-red-100 text-red-600 border border-red-200 rounded">
                         {{ $pesan }}
                     </div>
                 @endif
@@ -47,7 +49,7 @@
 
                     <!-- masalah rating -->
                     <li class="me-2">
-                        <button id="btn-hadiah" type="button" 
+                        <button id="btn-hadiah" type="button"
                             class="inline-block px-4 py-2 text-gray-400 bg-gray-200 rounded-md"
                             aria-current="page">Rating</button>
                     </li>
@@ -55,8 +57,7 @@
 
                 <div>
                     <div id="lomba-deskripsi">
-                        <h2
-                            class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950  bg-gradient-to-r from-0% from-sky-400">
+                        <h2 class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950  bg-gradient-to-r from-0% from-sky-400">
                             Deskripsi
                         </h2>
                         <p class="text-base font-normal text-sky-950 opacity-80">
@@ -65,18 +66,17 @@
                     </div>
 
                     <div id="lomba-persyaratan" class="hidden">
-                        <h2
-                            class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950  bg-gradient-to-r from-0% from-sky-400">
+                        <h2 class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950  bg-gradient-to-r from-0% from-sky-400">
                             Persyaratan
                         </h2>
 
                         <dl class="divide-y divide-sky-950 divide-opacity-10">
                             @foreach ($names as $name => $label)
-                            <dt class="text-sky-950 text-base py-2">
-                                {{ $label }}
-                            </dt>
+                                <dt class="text-sky-950 text-base py-2">
+                                    {{ $label }}
+                                </dt>
                             @endforeach
-                        {{-- @php
+                            {{-- @php
                                 $persyaratan = json_decode($lomba->lomba_persyaratan, true);
                             @endphp
                             @foreach ($persyaratan as $item)
@@ -87,44 +87,46 @@
                     </div>
 
                     <div id="lomba-hadiah" class="hidden">
-    <h2 class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950 bg-gradient-to-r from-0% from-sky-400">Rating</h2>
+                        <h2 class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950 bg-gradient-to-r from-0% from-sky-400">
+                            Rating</h2>
 
-    <!-- Tampilkan rating bintang -->
-    <div>
-    <span>
-        @for ($i = 1; $i <= 5; $i++)
-            @if ($lomba->average_rating >= $i)
-                <!-- Bintang penuh -->
-                <span style="color: gold; font-size: 24px;">★</span>
-            @elseif ($lomba->average_rating >= $i - 0.5)
-                <!-- Setengah bintang -->
-                <span style="position: relative; display: inline-block; color: gold; font-size: 24px;">
-                    <span style="position: absolute; overflow: hidden; width: 50%;">★</span>
-                    <span style="color: gray;">★</span>
-                </span>
-            @else
-                <!-- Bintang kosong -->
-                <span style="color: gray; font-size: 24px;">★</span>
-            @endif
-        @endfor
-    </span>
-    <!-- Menampilkan rata-rata rating dalam bentuk angka -->
-    <span> ({{ number_format($lomba->average_rating, 1) }})</span>
-    <span> ({{ $lomba->review_count }} pengulas)</span>
-</div>
+                        <!-- Tampilkan rating bintang -->
+                        <div>
+                            <span>
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($lomba->average_rating >= $i)
+                                        <!-- Bintang penuh -->
+                                        <span style="color: gold; font-size: 24px;">★</span>
+                                    @elseif ($lomba->average_rating >= $i - 0.5)
+                                        <!-- Setengah bintang -->
+                                        <span
+                                            style="position: relative; display: inline-block; color: gold; font-size: 24px;">
+                                            <span style="position: absolute; overflow: hidden; width: 50%;">★</span>
+                                            <span style="color: gray;">★</span>
+                                        </span>
+                                    @else
+                                        <!-- Bintang kosong -->
+                                        <span style="color: gray; font-size: 24px;">★</span>
+                                    @endif
+                                @endfor
+                            </span>
+                            <!-- Menampilkan rata-rata rating dalam bentuk angka -->
+                            <span> ({{ number_format($lomba->average_rating, 1) }})</span>
+                            <span> ({{ $lomba->review_count }} pengulas)</span>
+                        </div>
 
-    <!-- Tampilkan ulasan berdasarkan kata yang sering digunakan -->
-    <h3>Kata yang Paling Sering Digunakan:</h3>
-    @if (!empty($lomba->most_common_words))
-        <ul>
-            @foreach ($lomba->most_common_words as $word => $count)
-                <li>{{ $word }} ({{ $count }})</li>
-            @endforeach
-        </ul>
-    @else
-        <p>Tidak ada ulasan yang tersedia.</p>
-    @endif
-</div>
+                        <!-- Tampilkan ulasan berdasarkan kata yang sering digunakan -->
+                        <h3>Kata yang Paling Sering Digunakan:</h3>
+                        @if (!empty($lomba->most_common_words))
+                            <ul>
+                                @foreach ($lomba->most_common_words as $word => $count)
+                                    <li>{{ $word }} ({{ $count }})</li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p>Tidak ada ulasan yang tersedia.</p>
+                        @endif
+                    </div>
 
                 </div>
             </div>
@@ -230,6 +232,5 @@
                 showTab(lombaHadiah);
             });
         </script>
-</body>
-
-</html>
+    </div>
+@endsection
