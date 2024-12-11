@@ -50,7 +50,7 @@
 
             <a href="/" class="-m-1.5 p-1.5">
                 <span class="sr-only">Achievo</span>
-                <img class="h-5 w-auto" src="{{ asset('storage/achievo-logo.svg') }}" alt="">
+                <img class="h-5 w-auto" src="{{ asset('storage/assets/achievo-logo.svg') }}" alt="">
             </a>
         </div>
 

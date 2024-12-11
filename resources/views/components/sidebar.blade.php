@@ -14,7 +14,7 @@
                     </svg>
                 </button>
                 <a href="/" class="flex ms-2 md:me-24">
-                    <img src="{{ asset('storage/achievo-logo.svg') }}" class="h-6 m-2" alt="Achievo Logo" />
+                    <img src="{{ asset('storage/assets/achievo-logo.svg') }}" class="h-6 m-2" alt="Achievo Logo" />
                 </a>
             </div>
             <div class="flex items-center">

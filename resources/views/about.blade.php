@@ -12,7 +12,7 @@
             <div class="relative isolate px-6 pt-14 lg:px-8 w-full lg:w-1/2">
                 <h2 class="text-2xl text-sky-500 font-semibold">Tentang Kami</h2>
 
-                <img src="{{ asset('storage/achievo-logo.svg') }}" alt="Logo Achievo" class="my-8">
+                <img src="{{ asset('storage/assets/achievo-logo.svg') }}" alt="Logo Achievo" class="my-8">
 
                 <p class="mt-5 text-base text-sky-950/60 leading-4">
                     Selamat datang di Achievo, portal inovatif yang dirancang untuk membantu pelajar Indonesia meraih
