@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PenyelenggaraController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\FeedbackControllerController;
+use App\Http\Controllers\PesertaPrestasiController;
 use Illuminate\Support\Facades\Route;
 
 // Welcome Page
@@ -43,11 +44,15 @@ Route::post('/{id}/detail/formulir', [JawabanController::class, 'storeJawaban'])
 /// Routes for Peserta (User Role: 'peserta')
 Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {
     Route::get('/', [PesertaController::class, 'index'])->name('pesertaIndexRoute');
-    Route::get('/listlomba', [PesertaController::class, 'listLomba'])->name('pesertaListLombaRoute');
-    Route::get('/listprestasi', [PesertaController::class, 'listPrestasi'])->name('pesertaListPrestasiRoute');
-    Route::get('/listprestasi/create', [PesertaController::class, 'showFormPrestasi'])->name('showFormPrestasi');
-    Route::post('/listprestasi/create', [PesertaController::class, 'kirimPrestasi'])->name('kirimPrestasi');
-    Route::get('/listprestasi/delete/{prestasi_id}', [PesertaController::class, 'deletePrestasi'])->name('deletePrestasiRoute');
+    Route::get('/daftar-lomba', [PesertaController::class, 'listLomba'])->name('pesertaListLombaRoute');
+
+    // Prestasi
+    Route::get('/prestasi', [PesertaPrestasiController::class, 'index'])->name('pesertaListPrestasiRoute');
+    Route::get('/prestasi/create', [PesertaPrestasiController::class, 'showFormPrestasi'])->name('pesertaPrestasiCreateRoute');
+    Route::post('/prestasi/create', [PesertaPrestasiController::class, 'kirimPrestasi'])->name('pesertaPrestasiStoreRoute');
+    Route::get('/prestasi/delete/{prestasi_id}', [PesertaPrestasiController::class, 'deletePrestasi'])->name('deletePrestasiRoute');
+
+    // Feedback
     Route::get('/formfeedback/{lombaId}', [PesertaController::class, 'showFormFeedback'])->name('showFormFeedback');
     Route::post('/kirimfeedback/{lombaId}', [PesertaController::class, 'kirimFeedback'])->name('kirimFeedback');
 });
