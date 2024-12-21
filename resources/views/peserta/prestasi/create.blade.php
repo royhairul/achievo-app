@@ -15,7 +15,7 @@
         <x-navbar is-login="{{ Auth::check() }}"></x-navbar>
         <div class="px-6">
             <div class="p-4 rounded-lg mt-4 gap-3">
-                <a href="{{ url()->previous() }}"
+                <a href="{{ url()->previous()}}"
                     class="mb-4 flex items-center gap-2 text-sm font-semibold text-sky-500">
                     <p class="material-symbols-rounded text-xl">arrow_back</p>
                     Kembali
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <form method="POST" action="{{ route('pesertaStorePrestasiRoute') }}" enctype="multipart/form-data"
+                <form method="POST" action="{{ route('pesertaPrestasiStoreRoute') }}" enctype="multipart/form-data"
                     class="grid sm:grid-cols-2 grid-cols-1 gap-5 mt-5">
                     @csrf
                     <div>
@@ -48,7 +48,7 @@
                                     @enderror">
                         </div>
                         @error('nama')
-                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        <p class="absolute text-sm text-rose-600">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -65,7 +65,7 @@
                                         @enderror">
                         </div>
                         @error('peringkat')
-                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        <p class="absolute text-sm text-rose-600">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -82,7 +82,7 @@
                                         @enderror">
                         </div>
                         @error('nomor')
-                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        <p class="absolute text-sm text-rose-600">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -93,7 +93,7 @@
                             class="mt-2 block w-full text-sm text-sky-900 border rounded-md cursor-pointer dark:text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="file-upload_help" id="file-upload" name="bukti" type="file">
                         @error('bukti')
-                            <p class="absolute text-sm text-rose-600">{{ $message }}</p>
+                        <p class="absolute text-sm text-rose-600">{{ $message }}</p>
                         @enderror
                     </div>
 

@@ -3,30 +3,32 @@
 @section('title', 'Detail Lomba')
 
 @section('content')
-    <div class="wrapper lg:px-24">
+    <div class="wrapper px-6 lg:px-24">
         <x-navbar type="eksplorasi" is-login="{{ Auth::check() }}"></x-navbar>
 
-        <div class="px-6">
-            <a href="{{ route('lombaDetailRoute', $lomba->lomba_id) }}"
+        <div class="mb-2">
+            <a href="{{ url()->previous() }}"
                 class="flex items-center gap-2 text-sm font-semibold text-sky-500">
                 <p class="material-symbols-rounded text-xl">arrow_back</p>
                 Kembali
             </a>
-            <h2 class="text-sky-950 font-semibold text-xl">Detail Lomba</h2>
         </div>
-
-        <div class="relative px-6 mt-10 py-24">
+        
+        <!-- <div class="relative px-6 mt-10 py-24">
             <img src="{{ asset('images/' . $lomba->lomba_poster) }}"
-                class="absolute block top-0 left-0 h-full w-full object-cover object-center">
-        </div>
-        <div class="w-full h-2 bg-gradient-to-r from-75% from-sky-950 to-sky-700"></div>
-
-        <div class="flex flex-col lg:flex-row">
-            <div class="basis-2/3 wrapper px-6 py-10">
-                <h2 class="text-3xl font-semibold text-sky-950">{{ $lomba->lomba_nama }}</h2>
+            class="absolute block top-0 left-0 h-full w-full object-cover object-center">
+        </div> -->
+        <!-- <div class="w-full h-2 bg-gradient-to-r from-75% from-sky-950 to-sky-700"></div> -->
+        
+        <img src="{{ asset('images/' . $lomba->lomba_poster) }}"
+            class="w-full lg:w-1/2 rounded-md border-1 top-0 left-0 object-cover object-center">
+        
+        <div class="flex flex-col lg:flex-row gap-6">
+            <div class="basis-2/3 wrapper py-10">
+                <h2 class="text-2xl font-semibold text-sky-950 tracking-tight">{{ $lomba->lomba_nama }}</h2>
                 <p class="text-sm text-sky-950">
-                    Diselenggarakan oleh <a href=""
-                        class="text-sky-500 font-semibold">{{ $lomba->penyelenggara_nama }}</a>
+                    Diselenggarakan oleh 
+                    <a href="" class="text-sky-500 font-semibold">{{ $lomba->penyelenggara_nama }}</a>
                 </p>
 
                 @if (isset($pesan))
@@ -57,7 +59,7 @@
 
                 <div>
                     <div id="lomba-deskripsi">
-                        <h2 class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950  bg-gradient-to-r from-0% from-sky-400">
+                        <h2 class="mt-10 mb-5 px-2 text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
                             Deskripsi
                         </h2>
                         <p class="text-base font-normal text-sky-950 opacity-80">
@@ -66,7 +68,7 @@
                     </div>
 
                     <div id="lomba-persyaratan" class="hidden">
-                        <h2 class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950  bg-gradient-to-r from-0% from-sky-400">
+                        <h2 class="mt-10 mb-5 px-2 text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
                             Persyaratan
                         </h2>
 
@@ -87,7 +89,7 @@
                     </div>
 
                     <div id="lomba-hadiah" class="hidden">
-                        <h2 class="mt-10 mb-5 p-1 text-lg font-bold text-sky-950 bg-gradient-to-r from-0% from-sky-400">
+                        <h2 class="mt-10 mb-5 px-2 text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
                             Rating</h2>
 
                         <!-- Tampilkan rating bintang -->
@@ -131,7 +133,7 @@
                 </div>
             </div>
 
-            <div class="basis-1/3 wrapper px-6 py-10">
+            <div class="basis-1/3 wrapper py-10">
                 <h2 class="text-xl font-semibold text-sky-950">Jadwal Pelaksanaan</h2>
 
                 <ul role="list" class="mt-4 divide-y divide-gray-100 rounded-md border border-gray-200">
@@ -142,7 +144,7 @@
                             </span>
                             <div class="ml-4 flex min-w-0 flex-1 gap-2">
                                 <span class="truncate font-bold text-sky-500">
-                                    {{ Carbon\Carbon::parse($lomba->lomba_tanggal)->format('d F Y') }}
+                                    {{ Carbon\Carbon::parse($lomba->lomba_tanggal)->translatedFormat('l, d F Y') }}
                                 </span>
                             </div>
                         </div>
