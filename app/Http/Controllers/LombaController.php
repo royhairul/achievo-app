@@ -41,32 +41,32 @@ class LombaController extends Controller
         $showAllLomba = false;
 
         // Bagian Rekomendasi hanya untuk peserta yang sudah login
-if ($user) {
-    $pesertaId = $user->user_id;
-    
-    // Ambil kategori yang pernah diikuti oleh peserta
-    $kategoriDiikuti = Lomba::join('tb_jawaban', 'tb_lomba.lomba_id', '=', 'tb_jawaban.jawaban_lomba')
-        ->where('tb_jawaban.jawaban_peserta', $pesertaId)
-        ->distinct()
-        ->pluck('lomba_kategori');
-    
-    if ($kategoriDiikuti->isNotEmpty()) {
-        // Query untuk rekomendasi lomba berdasarkan kategori yang pernah diikuti peserta
-        $recommendationLomba = Lomba::whereIn('lomba_kategori', $kategoriDiikuti)
-            ->where('lomba_tanggal', '>=', Carbon::tomorrow())
-            ->take(3)
-            ->get();
-    } else {
-        // Jika tidak ada kategori yang diikuti, rekomendasikan 3 lomba dengan pendaftar terbanyak
-        $recommendationLomba = Lomba::select('tb_lomba.*')
-        ->join('tb_jawaban', 'tb_lomba.lomba_id', '=', 'tb_jawaban.jawaban_lomba')
-        ->where('lomba_tanggal', '>=', Carbon::tomorrow())
-        ->groupBy('tb_lomba.lomba_id') // Kelompokkan berdasarkan ID lomba
-        ->orderByRaw('COUNT(tb_jawaban.jawaban_peserta) DESC') // Urutkan berdasarkan jumlah jawaban peserta terbanyak
-        ->take(3)
-        ->get();
-    }
-}
+        if ($user) {
+            $pesertaId = $user->user_id;
+
+            // Ambil kategori yang pernah diikuti oleh peserta
+            $kategoriDiikuti = Lomba::join('tb_jawaban', 'tb_lomba.lomba_id', '=', 'tb_jawaban.jawaban_lomba')
+                ->where('tb_jawaban.jawaban_peserta', $pesertaId)
+                ->distinct()
+                ->pluck('lomba_kategori');
+
+            if ($kategoriDiikuti->isNotEmpty()) {
+                // Query untuk rekomendasi lomba berdasarkan kategori yang pernah diikuti peserta
+                $recommendationLomba = Lomba::whereIn('lomba_kategori', $kategoriDiikuti)
+                    ->where('lomba_tanggal', '>=', Carbon::tomorrow())
+                    ->take(3)
+                    ->get();
+            } else {
+                // Jika tidak ada kategori yang diikuti, rekomendasikan 3 lomba dengan pendaftar terbanyak
+                $recommendationLomba = Lomba::select('tb_lomba.*')
+                    ->join('tb_jawaban', 'tb_lomba.lomba_id', '=', 'tb_jawaban.jawaban_lomba')
+                    ->where('lomba_tanggal', '>=', Carbon::tomorrow())
+                    ->groupBy('tb_lomba.lomba_id') // Kelompokkan berdasarkan ID lomba
+                    ->orderByRaw('COUNT(tb_jawaban.jawaban_peserta) DESC') // Urutkan berdasarkan jumlah jawaban peserta terbanyak
+                    ->take(3)
+                    ->get();
+            }
+        }
 
         // Bagian untuk pencarian lomba (keyword dapat kosong)
         $query = Lomba::query();
@@ -107,9 +107,9 @@ if ($user) {
                         $q->where('lomba_nama', 'LIKE', "%$keyword%")
                             ->orWhere('lomba_kategori', 'LIKE', "%$keyword%");
                     })
-                    // ->where('lomba_tanggal', '>=', Carbon::tomorrow())
-                    ->take(30) // Batasi hasil hingga 30
-                    ->get();
+                        // ->where('lomba_tanggal', '>=', Carbon::tomorrow())
+                        ->take(30) // Batasi hasil hingga 30
+                        ->get();
                 }
 
                 // Jika hasil pencarian kosong, tampilkan semua lomba tersedia
@@ -136,16 +136,12 @@ if ($user) {
             ->where('tb_lomba.lomba_id', $idLomba)
             ->first();
 
-            
-
         // Cek apakah data lomba ditemukan
         if (!$lomba) {
             return response()->json([
                 'message' => 'Lomba tidak ditemukan',
             ], 404);
         }
-
-        
 
         // Mengambil field names sebagai persyaratan
         // Mengambil label
@@ -165,15 +161,12 @@ if ($user) {
         $tanggalSekarang = Carbon::now();
         if (Carbon::parse($lomba->lomba_tanggal)->isPast()) {
             $pesan = "Masa pendaftaran lomba ini sudah berakhir, silahkan ikuti lomba lain yang masih tersedia";
-            return view('lomba.detail', compact('lomba', 'pesan','names'));
         }
 
+        // Mengambil Jumlah yang telah terdaftar
+        $partisipan = FormLomba::where('form_lomba', $lomba->lomba_id)->get()->count();
 
-
-
-
-        // return dd($lomba);
-        return view('lomba.detail', compact('lomba','names'));
+        return view('lomba.detail', compact('lomba', 'pesan', 'names', 'partisipan'));
     }
 
     public function showForm(string $id)
@@ -236,7 +229,7 @@ if ($user) {
             if (is_array($field) && isset($field['name'])) {
                 // Ambil nama dari field
                 $name = $field['name'];
-    
+
                 // Cek apakah nama field ada dalam $fillable
                 foreach ($fillable as $fillableField) {
                     // Jika nama field sama dengan nama input yang ada di $fillable

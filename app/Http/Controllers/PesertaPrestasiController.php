@@ -29,7 +29,7 @@ class PesertaPrestasiController extends Controller
             ->get();
 
         // Mengirim data peserta dan lomba yang diikuti ke view
-        return view('peserta.index', compact('dataPeserta', 'daftarPrestasi'));
+        return view('peserta.prestasi.index', compact('dataPeserta', 'daftarPrestasi'));
     }
 
     public function showFormPrestasi()
