@@ -44,7 +44,7 @@
                     </p>
                     <div class="w-full mt-10">
                         <a href="{{ route('pencarianRoute') }}"
-                            class="btn w-full lg:btn-wide border-none outline-none bg-sky-500 text-lg font-semibold text-white hover:bg-sky-400 shadow-sm hover:shadow-lg shadow-sky-300 hover:shadow-sky-200 transition-all duration-300">
+                            class="btn w-full lg:btn-wide border-none outline-none bg-sky-500 text-lg font-semibold text-white hover:bg-sky-400 shadow-sm hover:shadow-lg shadow-sky-300/50 hover:shadow-sky-200 transition-all duration-300">
                             Mulai Sekarang!
                         </a>
                     </div>
@@ -83,8 +83,8 @@
         <div class="relative page-padding py-20 h-max flex flex-col lg:flex-row justify-between items-center">
             <img src="{{ asset('storage/assets/guide-asset.png') }}" alt="Logo Achievo" class=" max-w-[30vmax] h-auto">
             <div class="lg:w-1/2">
-                <h2 class="font-semibold text-sky-400 tracking-tight leading-3">Gimana cara pakainya?</h2>
-                <h2 class="text-[3rem] font-bold text-sky-950 tracking-tight">Guidebook</h2>
+                <h4 class="font-semibold text-sky-400 tracking-tight leading-3">Gimana cara pakainya?</h4>
+                <h2 class="text-5xl font-bold text-sky-950 tracking-tight leading-relaxed">Guidebook</h2>
 
                 <p class="mt-2 text-sm lg:text-base font-normal leading-6 text-sky-950/60">
                     Panduan ini akan membantu kamu memahami cara menggunakan Achievo. Mulai dari mencari lomba yang
@@ -94,13 +94,14 @@
                 </p>
 
                 <div class="mt-4 flex flex-col gap-2">
-                    <a href="" class="flex items-center gap-2 text-sky-500 font-medium p-2 bg-sky-500/10 rounded-md">
+                    <a href="{{ route('panduanPesertaRoute') }}"
+                        class="flex items-center gap-2 text-sky-500 font-medium p-2 bg-sky-500/10 rounded-md">
                         <span class="material-symbols-outlined">
                             developer_guide
                         </span>
                         <span>Panduan untuk Peserta</span>
                     </a>
-                    <a href=""
+                    <a href="{{ route('panduanPenyelenggaraRoute') }}"
                         class="flex items-center gap-2 text-amber-500 font-medium p-2 bg-amber-500/10 rounded-md">
                         <span class="material-symbols-outlined">
                             developer_guide
