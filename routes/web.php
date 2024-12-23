@@ -22,6 +22,9 @@ Route::get('/pencarian', [PencarianController::class, 'search'])->name('pencaria
 // Tentang Page
 Route::get('/tentang', fn() => view('about'))->name('aboutRoute');
 
+Route::get('/panduan-peserta', fn() => view('panduan.peserta'))->name('panduanPesertaRoute');
+Route::get('/panduan-penyelenggara', fn() => view('panduan.penyelenggara'))->name('panduanPenyelenggaraRoute');
+
 // Login Route
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('loginRoute');
 Route::post('/login', [LoginController::class, 'login'])->name('loginPostRoute');
