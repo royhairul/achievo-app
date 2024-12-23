@@ -60,7 +60,7 @@
 
         {{-- User Avatar and Actions --}}
         @if ($isLogin)
-            <div class="navbar-end">
+            <div class="navbar-end w-max ml-4">
                 <div class="lg:hidden">
                     <button id="avatarButton" type="button" data-dropdown-toggle="userDropdownMobile"
                         data-dropdown-placement="bottom-start"
@@ -88,10 +88,14 @@
                     </div>
                 </div>
 
-                <div class="hidden lg:flex flex-1 justify-end gap-2">
+                <div class="w-max hidden lg:flex flex-1 justify-end gap-2">
                     <button id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
                         data-dropdown-placement="bottom-start"
-                        class="w-10 h-10 bg-gray-400 ring-4 ring-gray-200 rounded-full cursor-pointer">
+                        class="flex pl-4 gap-4 items-center bg-sky-500/10 rounded-xl">
+                        <p class="text-sky-400">
+                            Hi, <span class="font-semibold">{{ Auth::user()->username }}</span>
+                        </p>
+                        <div class="w-8 h-8 bg-gray-400 ring-4 ring-sky-200 rounded-full cursor-pointer"></div>
                     </button>
 
                     <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">

@@ -22,8 +22,8 @@
             </button>
         </form>
 
-        <div class="flex gap-2">
-            <span class="text-xs lg:text-sm px-2 rounded-md bg-sky-900 text-sky-500">
+        <div class="w-full flex-wrap flex gap-2">
+            <span class="w-max text-xs lg:text-sm px-2 rounded-md bg-sky-900 text-sky-500">
                 Lomba Catur
             </span>
 
@@ -64,15 +64,15 @@
                                     class="relative w-full h-48 overflow-hidden rounded-lg bg-white">
                                     <img src="{{ asset('images/' . $item->lomba_poster) }}" class="h-full w-full object-cover"
                                         style="object-fit: cover;">
-                                    <div class="absolute bottom-0 right-0 text-white bg-sky-500 p-4">
+                                    <div class="rounded-tl-lg absolute bottom-0 right-0 text-white bg-sky-500 p-4">
                                         <p class="text-xs">Batas Pendaftaran</p>
-                                        <p class="text-lg font-bold">
-                                            {{ \Carbon\Carbon::parse($item->lomba_tanggal)->format('d F Y') }}
+                                        <p class="lg:text-lg font-bold">
+                                            {{ \Carbon\Carbon::parse($item->lomba_tanggal)->translatedFormat('d F Y') }}
                                         </p>
                                     </div>
                                 </a>
                                 <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                                    class="my-1 block text-lg font-bold text-sky-500">{{ $item->lomba_nama }}</a>
+                                    class="block text-lg font-bold text-sky-500">{{ $item->lomba_nama }}</a>
                                 <p class="text-sm">{{ $item->penyelenggara_nama }}</p>
                             </div>
                         @endforeach
@@ -86,33 +86,34 @@
             @endif
         </div>
 
-        {{-- <!-- Bagian Rekomendasi -->
+        <!-- Bagian Rekomendasi -->
         @if (Auth::check())
-        @if (isset($recommendationLomba) && $recommendationLomba->count() > 0)
-        <h2 class="text-xl font-semibold text-sky-950">Rekomendasi Buat Kamu</h2>
-        <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0 justify-start">
-            @foreach ($recommendationLomba as $item)
-            <div class="group relative flex flex-col justify-between h-72">
-                <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                    class="relative w-full h-48 overflow-hidden rounded-lg bg-white">
-                    <img src="{{ asset('images/' . $item->lomba_poster) }}" class="h-full w-full object-cover"
-                        style="object-fit: cover;">
-                    <div class="absolute bottom-0 right-0 text-white bg-sky-500 p-4">
-                        <p class="text-xs">Batas Pendaftaran</p>
-                        <p class="text-lg font-bold">
-                            {{ \Carbon\Carbon::parse($item->lomba_tanggal)->format('d F Y') }}</p>
-                    </div>
-                </a>
-                <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                    class="my-1 block text-lg font-bold text-sky-500">{{ $item->lomba_nama }}</a>
-                <p class="text-sm">{{ $item->penyelenggara_nama }}</p>
-            </div>
-            @endforeach
-        </div>
+            @if (isset($recommendationLomba) && $recommendationLomba->count() > 0)
+                <h2 class="text-xl font-semibold text-sky-950">Rekomendasi Buat Kamu</h2>
+                <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0 justify-start">
+                    @foreach ($recommendationLomba as $item)
+                        <div class="group relative flex flex-col justify-between h-72">
+                            <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
+                                class="relative w-full h-48 overflow-hidden rounded-lg bg-white">
+                                <img src="{{ asset('images/' . $item->lomba_poster) }}" class="h-full w-full object-cover"
+                                    style="object-fit: cover;">
+                                <div class="absolute bottom-0 right-0 text-white bg-sky-500 p-4">
+                                    <p class="text-xs">Batas Pendaftaran</p>
+                                    <p class="text-lg font-bold">
+                                        {{ \Carbon\Carbon::parse($item->lomba_tanggal)->format('d F Y') }}
+                                    </p>
+                                </div>
+                            </a>
+                            <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
+                                class="my-1 block text-lg font-bold text-sky-500">{{ $item->lomba_nama }}</a>
+                            <p class="text-sm">{{ $item->penyelenggara_nama }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         @else
-        <p class="text-center text-gray-500">Anda perlu login untuk mengakses fitur ini</p>
+            <p class="text-center text-gray-500">Anda perlu login untuk mengakses fitur ini</p>
         @endif
-        @endif --}}
 
         <!-- Bagian Lomba yang Dicari -->
         {{-- <h2 class="text-xl font-semibold text-sky-950 mt-10">Lomba yang Dicari</h2>

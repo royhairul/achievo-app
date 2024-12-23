@@ -10,12 +10,9 @@
 <div class="bg-white ">
     <x-navbar isLogin='true' data-user="{{ $dataPeserta }}"></x-navbar>
 
-    <div class="flex flex-col gap-2 py-8 px-8 lg:px-16 mt-10 bg-sky-950 text-white">
+    <div class="page-padding flex flex-col gap-2 py-8 mt-10 bg-sky-950 text-white">
         <p>Welcome,</p>
         <h1 class="text-2xl font-semibold text-cyan-300">{{ $dataPeserta->peserta_nama }}</h1>
-        <p class="mt-2 opacity-60 font-normal text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, porro?
-        </p>
         <div class="mt-4 grid sm:grid-cols-2 gap-4 grid-cols-1">
             <div class="flex gap-2 text-sm items-center text-sky-50">
                 <p class="text-sky-500 material-symbols-rounded">email</p>
@@ -32,7 +29,7 @@
         </div>
     </div>
     <div class="w-full h-2 bg-gradient-to-r from-30% from-sky-950 to-sky-500"></div>
-    <div class="py-8 px-8 lg:px-16 grid grid-cols-1 gap-8 sm:grid-cols-2">
+    <div class="page-padding py-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
         <!-- Prestasi Saya -->
         <div class="p-4 rounded bg-gray-100">
             <div class="flex">
