@@ -63,15 +63,15 @@
                 </div>
                 <div class="px-8 lg:px-20 w-full carousel carousel-center space-x-4 py-4">
                     <!-- Step 1 -->
-                    <x-guide.step id="1" image="">
+                    <x-guide.step id="1" image="" is-dark="true">
                         Masuk ke halaman detail lomba yang telah dibuat.
                     </x-guide.step>
                     <!-- Step 2 -->
-                    <x-guide.step id="2" image="">
+                    <x-guide.step id="2" image="" is-dark="true">
                         Klik pada tab <strong>Peserta</strong> untuk melihat peserta yang telah mendaftar.
                     </x-guide.step>
                     <!-- Step 3 -->
-                    <x-guide.step id="3" image="">
+                    <x-guide.step id="3" image="" is-dark="true">
                         Kamu bisa melihat status peserta dan melakukan verifikasi atau pengecekan lainnya.
                     </x-guide.step>
                 </div>

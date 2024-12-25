@@ -159,9 +159,10 @@ class LombaController extends Controller
 
         // Cek jika tanggal lomba sudah berlalu
         $tanggalSekarang = Carbon::now();
-        if (Carbon::parse($lomba->lomba_tanggal)->isPast()) {
-            $pesan = "Masa pendaftaran lomba ini sudah berakhir, silahkan ikuti lomba lain yang masih tersedia";
-        }
+        $pesan = Carbon::parse($lomba->lomba_tanggal)->isPast()
+            ? "Masa pendaftaran lomba ini sudah berakhir, silahkan ikuti lomba lain yang masih tersedia"
+            : null;
+
 
         // Mengambil Jumlah yang telah terdaftar
         $partisipan = FormLomba::where('form_lomba', $lomba->lomba_id)->get()->count();

@@ -24,13 +24,15 @@
                 terbaik, dan kami hadir untuk mendukung perjalanan tersebut.
             </p>
             <div class="flex flex-col gap-2">
-                <a href="" class="flex items-center gap-2 text-sky-500 font-medium p-2 bg-sky-500/10 rounded-md">
+                <a href="{{ route('panduanPesertaRoute') }}"
+                    class="flex items-center gap-2 text-sky-500 font-medium p-2 bg-sky-500/10 rounded-md">
                     <span class="material-symbols-outlined">
                         developer_guide
                     </span>
                     <span>Panduan untuk Peserta</span>
                 </a>
-                <a href="" class="flex items-center gap-2 text-amber-500 font-medium p-2 bg-amber-500/10 rounded-md">
+                <a href="{{ route('panduanPenyelenggaraRoute') }}"
+                    class="flex items-center gap-2 text-amber-500 font-medium p-2 bg-amber-500/10 rounded-md">
                     <span class="material-symbols-outlined">
                         developer_guide
                     </span>
