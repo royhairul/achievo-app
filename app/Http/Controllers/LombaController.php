@@ -145,7 +145,7 @@ class LombaController extends Controller
 
         // Mengambil field names sebagai persyaratan
         // Mengambil label
-        $dataForm = FormLomba::where('form_lomba', $lomba->lomba_id)->get()[0];
+        $dataForm = FormLomba::where('form_lomba', $lomba->lomba_id)->first();
         $dataLabel = json_decode($dataForm->form_content, true);
 
         $names = [];
