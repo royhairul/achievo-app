@@ -135,4 +135,27 @@ class Lomba extends Model
             'persyaratan' => $this->lomba_persyaratan,  // Persyaratan JSON
         ];
     }
+    /**
+     * Mutator untuk `lomba_poster`
+     */
+    public function setLombaPosterAttribute($value)
+    {
+        $this->attributes['lomba_poster'] = $this->formatGoogleDriveLink($value);
+    }
+
+    /**
+     * Fungsi untuk memformat tautan Google Drive
+     */
+    private function formatGoogleDriveLink($link)
+    {
+        if (strpos($link, 'drive.google.com') !== false) {
+            preg_match('/file\/d\/([^\/]+)/', $link, $matches);
+            if (isset($matches[1])) {
+                $fileId = $matches[1];
+                // return "https://drive.google.com/uc?id=$fileId";
+                return "https://lh3.googleusercontent.com/d/$fileId=w1000?authuser=0";
+            }
+        }
+        return $link;
+    }
 }
