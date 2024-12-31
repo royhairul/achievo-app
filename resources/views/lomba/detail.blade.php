@@ -11,7 +11,12 @@
             <span class="material-symbols-rounded text-xl">arrow_back</span>
             <span>Kembali</span>
         </a>
-        <img src="{{ asset('images/' . $lomba->lomba_poster) }}"
+        @php
+            $posterUrl = filter_var($lomba->lomba_poster, FILTER_VALIDATE_URL)
+                ? $lomba->lomba_poster
+                : asset('images/' . $lomba->lomba_poster);
+        @endphp
+        <img src="{{ $posterUrl }}" alt="{{ $lomba->lomba_nama }}"
             class="w-full lg:w-1/2 rounded-md border-1 top-0 left-0 object-cover object-center">
         <div class="flex flex-col lg:flex-row gap-6">
             <div class="basis-2/3 wrapper py-10">
@@ -137,7 +142,7 @@
                             <div class="ml-4 flex min-w-0 flex-1 gap-2">
                                 <span class="truncate font-bold text-sky-500">
                                     Terdaftar
-                                    {{ $partisipan }} dari
+                                    {{ $partisipan }} /
                                     {{ $lomba->lomba_kapasitas }}
                                 </span>
                             </div>

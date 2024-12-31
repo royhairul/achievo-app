@@ -41,14 +41,55 @@
 
         {{-- After Pencarian --}}
         @if (isset($keyword))
-            <h2 class="text-xl font-semibold text-sky-950 mt-10">Hasil Pencarian Lomba</h2>
-            <p class="text-sm text-sky-950">
-                Anda mencari
-                <span class="font-semibold text-sky-500 font-italic">{{ $keyword }}</span>
-            </p>
+            <div class="mb-10">
+                <h2 class="text-xl font-semibold text-sky-950">Hasil Pencarian Lomba</h2>
+                <p class="text-sm text-sky-950">
+                    Anda mencari
+                    <span class="font-semibold text-sky-500 italic">{{ $keyword }}</span>
+                </p>
+                @if ($cariLomba->count() > 0)
+                    <div class="max-h-100 overflow-y-auto">
+                        <div class="mt-2 space-y-8 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0 justify-start">
+                            @foreach ($cariLomba as $item)
+                                <x-lomba-card :item="$item" />
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div
+                        class="mt-2 flex items-center justify-center border-2 rounded border-gray-200 border-dashed bg-gray-50 h-36">
+                        <p class="text-gray-300">Tidak Ada Hasil</p>
+                    </div>
+                @endif
+                <hr class="my-10">
+            </div>
+        @endif
+
+        <!-- Bagian Rekomendasi -->
+        <h2 class="text-xl font-semibold text-sky-950 flex items-center gap-2">
+            <span class="material-symbols-outlined">
+                editor_choice
+            </span>
+            <span>
+                Rekomendasi Buat Kamu!
+            </span>
+        </h2>
+        @if (Auth::check())
+            @if (isset($recommendationLomba) && $recommendationLomba->count() > 0)
+                <div class="mt-2 space-y-8 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0 justify-start">
+                    @foreach ($recommendationLomba as $item)
+                        <x-lomba-card :item="$item" />
+                    @endforeach
+                </div>
+            @endif
+        @else
             <div
-                class="mt-2 flex items-center justify-center border-2 rounded border-gray-200 border-dashed bg-gray-50 h-36">
-                <p class="text-gray-300">Tidak Ada Hasil</p>
+                class="mt-2 flex items-center justify-center border-2 rounded border-gray-200 border-dashed bg-gray-50 py-2">
+                <p class="text-gray-400 text-sm">
+                    Anda perlu
+                    <a href="{{ route('loginRoute') }}" class="text-sky-500 font-semibold">login</a>
+                    untuk mengakses fitur ini
+                </p>
             </div>
         @endif
 
@@ -57,24 +98,9 @@
         <div>
             @if ($daftarLomba->count() > 0)
                 <div class="max-h-100 overflow-y-auto">
-                    <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0 justify-start">
+                    <div class="mt-2 space-y-8 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0 justify-start">
                         @foreach ($daftarLomba as $item)
-                            <div class="group relative flex flex-col justify-between">
-                                <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                                    class="relative w-full h-48 overflow-hidden rounded-lg bg-white">
-                                    <img src="{{ asset('images/' . $item->lomba_poster) }}" class="h-full w-full object-cover"
-                                        style="object-fit: cover;">
-                                    <div class="rounded-tl-lg absolute bottom-0 right-0 text-white bg-sky-500 p-4">
-                                        <p class="text-xs">Batas Pendaftaran</p>
-                                        <p class="lg:text-lg font-bold">
-                                            {{ \Carbon\Carbon::parse($item->lomba_tanggal)->translatedFormat('d F Y') }}
-                                        </p>
-                                    </div>
-                                </a>
-                                <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                                    class="block text-lg font-bold text-sky-500">{{ $item->lomba_nama }}</a>
-                                <p class="text-sm">{{ $item->penyelenggara_nama }}</p>
-                            </div>
+                            <x-lomba-card :item="$item" />
                         @endforeach
                     </div>
                 </div>
@@ -85,70 +111,6 @@
                 </div>
             @endif
         </div>
-
-        <!-- Bagian Rekomendasi -->
-        @if (Auth::check())
-            @if (isset($recommendationLomba) && $recommendationLomba->count() > 0)
-                <h2 class="text-xl font-semibold text-sky-950">Rekomendasi Buat Kamu</h2>
-                <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0 justify-start">
-                    @foreach ($recommendationLomba as $item)
-                        <div class="group relative flex flex-col justify-between h-72">
-                            <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                                class="relative w-full h-48 overflow-hidden rounded-lg bg-white">
-                                <img src="{{ asset('images/' . $item->lomba_poster) }}" class="h-full w-full object-cover"
-                                    style="object-fit: cover;">
-                                <div class="absolute bottom-0 right-0 text-white bg-sky-500 p-4">
-                                    <p class="text-xs">Batas Pendaftaran</p>
-                                    <p class="text-lg font-bold">
-                                        {{ \Carbon\Carbon::parse($item->lomba_tanggal)->format('d F Y') }}
-                                    </p>
-                                </div>
-                            </a>
-                            <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                                class="my-1 block text-lg font-bold text-sky-500">{{ $item->lomba_nama }}</a>
-                            <p class="text-sm">{{ $item->penyelenggara_nama }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
-        @else
-            <p class="text-center text-gray-500">Anda perlu login untuk mengakses fitur ini</p>
-        @endif
-
-        <!-- Bagian Lomba yang Dicari -->
-        {{-- <h2 class="text-xl font-semibold text-sky-950 mt-10">Lomba yang Dicari</h2>
-        @if ($showAllLomba && !empty($keyword))
-        <p class="text-center text-gray-500">
-            Tidak ada yang cocok dengan
-            pencarian"{{ $keyword }}"
-        </p>
-        @endif --}}
-        {{--
-        <div class="max-h-100 overflow-y-auto">
-            @if ($lomba->count() > 0)
-            <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0 justify-start">
-                @foreach ($lomba as $item)
-                <div class="group relative flex flex-col justify-between h-72">
-                    <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                        class="relative w-full h-48 overflow-hidden rounded-lg bg-white">
-                        <img src="{{ asset('images/' . $item->lomba_poster) }}" class="h-full w-full object-cover"
-                            style="object-fit: cover;">
-                        <div class="absolute bottom-0 right-0 text-white bg-sky-500 p-4">
-                            <p class="text-xs">Batas Pendaftaran</p>
-                            <p class="text-lg font-bold">
-                                {{ \Carbon\Carbon::parse($item->lomba_tanggal)->format('d F Y') }}</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-                        class="my-1 block text-lg font-bold text-sky-500">{{ $item->lomba_nama }}</a>
-                    <p class="text-sm">{{ $item->penyelenggara_nama }}</p>
-                </div>
-                @endforeach
-            </div>
-            @else
-            <p class="text-center text-gray-500">Tidak ada lomba yang ditemukan</p>
-            @endif
-        </div> --}}
     </div>
 </div>
 @endsection
