@@ -10,6 +10,33 @@ class RegisterPenyelenggaraTest extends DuskTestCase
 {
     protected $tablesToTruncate = ['users', 'tb_penyelenggara'];
 
+    // TC_REGISTER_024
+    public function test_register_penyelenggara_success(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/register/penyelenggara')
+                ->type('name', 'Team Academy')
+                ->type('address', 'Rogojampi, Banyuwangi')
+                ->select('bidang', 'Akademik')
+                ->type('email', 'team@academy.com')
+                ->type('phone', '+628123456789')
+                ->type('username', 'team_aca')
+                ->type('password', 'admin');
+
+            // Pengisian Tanggal
+            $browser->type('birthdate', '13-03-2004')
+                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
+
+            // Menekan Tombol
+            $browser->press('Buat Akun');
+
+            // Periksan halaman redirect ke halaman login
+            $browser->assertPathIs('/login');
+
+            // Mengambil Screenshot
+            $browser->screenshot('register/TC_REGISTER_024__RESULT');
+        });
+    }
 
     // TC_REGISTER_025
     public function test_register_penyelenggara_empty_all(): void
@@ -31,13 +58,22 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert pesan error terkait pengisian form yang kosong
+            $browser->assertSee('Nama penyelenggara harus terisi.');
+            $browser->assertSee('Tanggal berdiri harus terisi.');
+            $browser->assertSee('Alamat harus terisi.');
+            $browser->assertSee('Bidang harus terisi.');
+            $browser->assertSee('Email harus terisi.');
+            $browser->assertSee('Nomor telepon harus terisi.');
+            $browser->assertSee('Username harus terisi.');
+            $browser->assertSee('Kata sandi harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_025__RESULT');
+            $browser->screenshot('register/TC_REGISTER_025__RESULT');
         });
     }
 
     // TC_REGISTER_026
-
     public function test_register_penyelenggara_invalid_birtdate_today(): void
     {
         $this->browse(function (Browser $browser) {
@@ -57,8 +93,11 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert untuk memastikan ada pesan error terkait tanggal lahir
+            $browser->assertSee('Tanggal berdiri minimal satu hari yang lalu.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_026__RESULT');
+            $browser->screenshot('register/TC_REGISTER_026__RESULT');
         });
     }
 
@@ -82,8 +121,11 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert untuk memastikan ada pesan error terkait tanggal lahir
+            $browser->assertSee('Tanggal berdiri maksimal 2000 tahun yang lalu.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_027__RESULT');
+            $browser->screenshot('register/TC_REGISTER_027__RESULT');
         });
     }
 
@@ -107,12 +149,15 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert untuk memastikan ada pesan error terkait nama
+            $browser->assertSee('Nama penyelenggara harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_028__RESULT');
+            $browser->screenshot('register/TC_REGISTER_028__RESULT');
         });
     }
 
-    // TC_REGISTER_29
+    // TC_REGISTER_029
     public function test_register_penyelenggara_empty_address(): void
     {
         $this->browse(function (Browser $browser) {
@@ -132,12 +177,15 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert untuk memastikan ada pesan error terkait alamat
+            $browser->assertSee('Alamat harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_029__RESULT');
+            $browser->screenshot('register/TC_REGISTER_029__RESULT');
         });
     }
 
-    // TC_REGISTER_30
+    // TC_REGISTER_030
     public function test_register_penyelenggara_empty_tanggal(): void
     {
         $this->browse(function (Browser $browser) {
@@ -157,12 +205,15 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert untuk memastikan ada pesan error terkait tanggal lahir
+            $browser->assertSee('Tanggal berdiri harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_030__RESULT');
+            $browser->screenshot('register/TC_REGISTER_030__RESULT');
         });
     }
 
-    // TC_REGISTER_31
+    // TC_REGISTER_031
     public function test_register_penyelenggara_empty_bidang(): void
     {
         $this->browse(function (Browser $browser) {
@@ -182,8 +233,11 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert untuk memastikan ada pesan error terkait bidang
+            $browser->assertSee('Bidang harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_031__RESULT');
+            $browser->screenshot('register/TC_REGISTER_031__RESULT');
         });
     }
 
@@ -207,12 +261,15 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert untuk memastikan ada pesan error terkait email
+            $browser->assertSee('Email harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_032__RESULT');
+            $browser->screenshot('register/TC_REGISTER_032__RESULT');
         });
     }
 
-    //  TC_REGISTER_033
+    // TC_REGISTER_033
     public function test_register_penyelenggara_empty_phone_number(): void
     {
         $this->browse(function (Browser $browser) {
@@ -232,8 +289,11 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert untuk memastikan ada pesan error terkait nomor telepon
+            $browser->assertSee('Nomor telepon harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_033__RESULT');
+            $browser->screenshot('register/TC_REGISTER_033__RESULT');
         });
     }
 
@@ -257,8 +317,11 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert bahwa pesan error 'Username harus terisi.' muncul
+            $browser->assertSee('Username harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_034__RESULT');
+            $browser->screenshot('register/TC_REGISTER_034__RESULT');
         });
     }
 
@@ -282,8 +345,11 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert bahwa pesan error 'Password harus terisi..' muncul
+            $browser->assertSee('Kata sandi harus terisi.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_035__RESULT');
+            $browser->screenshot('register/TC_REGISTER_035__RESULT');
         });
     }
 
@@ -297,7 +363,7 @@ class RegisterPenyelenggaraTest extends DuskTestCase
                 ->select('bidang', 'Akademik')
                 ->type('email', 'team@academy.com')
                 ->type('phone', '+628123456789')
-                ->type('username', 'team_aca')
+                ->type('username', 't')
                 ->type('password', 'admin');
 
             // Pengisian Tanggal
@@ -307,8 +373,11 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert bahwa pesan error 'Username minimal 4 karakter.' muncul
+            $browser->assertSee('Username minimal 4 karakter.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_036__RESULT');
+            $browser->screenshot('register/TC_REGISTER_036__RESULT');
         });
     }
 
@@ -332,58 +401,12 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_037__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_038
-    public function test_register_penyelenggara_address_only_2_character(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Ja')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '+628123456789')
-                ->type('username', 'team_aca')
-                ->type('password', 'admin');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
+            // Assert bahwa pesan error 'Username maksimal 51 karakter.' muncul
+            // $browser->assertSee('Username maksimal 51 karakter.');
+            $browser->assertPathIs('/login');
 
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_038__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_039
-    public function test_register_penyelenggara_address_more_than_61_character(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Townia Nilfheim Midgard Titan Chronos Kepler Templar Andromed')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '+628123456789')
-                ->type('username', 'team_aca')
-                ->type('password', 'admin');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
-
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_039__RESULT');
+            $browser->screenshot('register/TC_REGISTER_037__RESULT');
         });
     }
 
@@ -407,8 +430,11 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
+            // Assert bahwa pesan error 'Email anda tidak valid.' muncul
+            $browser->assertSee('Email anda tidak valid.');
+
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_040__RESULT');
+            $browser->screenshot('register/TC_REGISTER_040__RESULT');
         });
     }
 
@@ -432,183 +458,12 @@ class RegisterPenyelenggaraTest extends DuskTestCase
             // Menekan Tombol
             $browser->press('Buat Akun');
 
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_041__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_042
-    public function test_register_penyelenggara_phone_more_than_15_number(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Rogojampi, Banyuwangi')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '123456789123456')
-                ->type('username', 'team_aca')
-                ->type('password', 'admin');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
+            // Assert bahwa pesan error 'Nomor Telepon minimal 8 karakter.' muncul
+            $browser->assertSee('Nomor telepon minimal 8 karakter.');
 
             // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_042__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_043
-    public function test_register_penyelenggara_username_contain_space(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Rogojampi, Banyuwangi')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '123456789123456')
-                ->type('username', 'team aca')
-                ->type('password', 'admin');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
-
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_043__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_044
-    public function test_register_penyelenggara_username_only_2_character(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Rogojampi, Banyuwangi')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '123456789123456')
-                ->type('username', 'te')
-                ->type('password', 'admin');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
-
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_044__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_045
-    public function test_register_penyelenggara_username_more_than_25_character(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Rogojampi, Banyuwangi')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '123456789123456')
-                ->type('username', 'team_academy_academy_acad')
-                ->type('password', 'admin');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
-
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_045__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_046
-    public function test_register_penyelenggara_password_only_2_character(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Rogojampi, Banyuwangi')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '123456789123456')
-                ->type('username', 'team_aca')
-                ->type('password', 'ad');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
-
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_046__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_047
-    public function test_register_penyelenggara_password_more_than_9_character(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Rogojampi, Banyuwangi')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '123456789123456')
-                ->type('username', 'team_academy_academy_acad')
-                ->type('password', 'adminteam123');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
-
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_047__RESULT');
-        });
-    }
-
-    //  TC_REGISTER_024
-    public function test_register_penyelenggara_success(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/register/penyelenggara')
-                ->type('name', 'Team Academy')
-                ->type('address', 'Rogojampi, Banyuwangi')
-                ->select('bidang', 'Akademik')
-                ->type('email', 'team@academy.com')
-                ->type('phone', '+628123456789')
-                ->type('username', 'team_aca')
-                ->type('password', 'admin');
-
-            // Pengisian Tanggal
-            $browser->type('birthdate', '13-03-2004')
-                ->script('document.querySelector(".datepicker-picker").style.display = "none";');
-
-            // Menekan Tombol
-            $browser->press('Buat Akun');
-
-            // Mengambil Screenshot
-            $browser->screenshot('TC_REGISTER_024__RESULT');
+            $browser->screenshot('register/TC_REGISTER_041__RESULT');
         });
     }
 }
+

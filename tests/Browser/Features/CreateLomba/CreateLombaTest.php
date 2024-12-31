@@ -61,14 +61,14 @@ class CreateLombaTest extends DuskTestCase
                 ->value('#date', now()->addDays(2)->format('d-m-Y'))
                 ->attach('poster-lomba', $this->generateImages()['validImage']);
 
-
-            $browser->screenshot('/create-lomba/TC_CREATELOMBA_001_RESULT');
             $browser->press('Buat Lomba');
+            $browser->assertPathIs('/penyelenggara/lomba/formulir/create');
+            $browser->screenshot('/create-lomba/TC_CREATELOMBA_001_RESULT');
         });
     }
 
     // TC_CREATELOMBA_002
-    public function test_002_penyelenggara_create_lomba_invalid_nama(): void
+    public function test_002_penyelenggara_create_lomba_invalid_name(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
