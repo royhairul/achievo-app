@@ -54,7 +54,7 @@
                             Berdiri</label>
                         <div>
                             <input datepicker datepicker-format="dd-mm-yyyy" id="birthdate" name="birthdate" type="text"
-                                autocomplete="birthdate" value="{{ old('birthdate') }}" placeholder="DD/MM/YYYY"
+                                autocomplete="birthdate" value="{{ old('birthdate') }}" placeholder="DD-MM-YYYY"
                                 class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
                                 @error('birthdate') ring-rose-600 @enderror">
                             @error('birthdate')
@@ -85,7 +85,7 @@
                     <div class="col-span-2 lg:col-span-1">
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                         <div>
-                            <input id="email" name="email" type="email" autocomplete="email"
+                            <input id="email" name="email" type="text" autocomplete="email"
                                 value="{{ old('email') }}" placeholder="email@mail.com"
                                 class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6
                                 @error('email') ring-rose-600 @enderror">

@@ -57,7 +57,7 @@ class RegisterController extends Controller
                     'date',
                     function ($attribute, $value, $fail) {
                         // Memvalidasi apakah tanggal minimal 5 tahun yang lalu
-                        if (\Carbon\Carbon::parse($value)->isAfter(\Carbon\Carbon::now()->subYears(5))) {
+                        if (\Carbon\Carbon::parse($value)->isAfter(\Carbon\Carbon::now()->subYears(value: 5))) {
                             $fail('Umur minimal 5 tahun.');
                         }if (\Carbon\Carbon::parse($value)->isBefore(\Carbon\Carbon::now()->subYears(80))) {
                             $fail('Umur maksimal 80 tahun.');
@@ -129,7 +129,7 @@ class RegisterController extends Controller
             'required' => ':attribute harus terisi.',
             'email' => ':attribute anda tidak valid.',
             'min' => ':attribute minimal :min karakter.',
-            'phone.numeric' => ':attribute harus berupa angka.',
+            'phone.regex' => ':attribute tidak valid.',
             'username.unique' => ':attribute sudah digunakan',
         ];
 
@@ -152,20 +152,20 @@ class RegisterController extends Controller
                 ],
                 'bidang' => 'required',
                 'email' => 'required|email|unique:tb_penyelenggara,penyelenggara_email',
-                'phone' => 'required|numeric',
+                'phone' => ['required', 'min:8', 'regex:/^(\+62|62|0)8[1-9][0-9]{6,10}$/'],
                 'username' => 'required|min:4|unique:users,username',
                 'password' => 'required|min:4',
             ],
             $customMessages,
             [
-                'name' => 'Nama Penyelenggara',
+                'name' => 'Nama penyelenggara',
                 'address' => 'Alamat',
-                'birthdate' => 'Tanggal Berdiri',
+                'birthdate' => 'Tanggal berdiri',
                 'bidang' => 'Bidang',
                 'email' => 'Email',
-                'phone' => 'Nomor Telepon',
+                'phone' => 'Nomor telepon',
                 'username' => 'Username',
-                'password' => 'Kata Sandi',
+                'password' => 'Kata sandi',
             ]
         );
 
