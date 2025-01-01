@@ -7,10 +7,11 @@
     <x-navbar type="eksplorasi" is-login="{{ Auth::check() }}"></x-navbar>
 
     <div class="page-padding mb-2">
-        <a href="{{ url()->previous() }}" class="my-2 flex items-center gap-2 text-sm font-semibold text-sky-500">
-            <span class="material-symbols-rounded text-xl">arrow_back</span>
-            <span>Kembali</span>
-        </a>
+        <x-breadcrumbs :items="[
+        ['label' => 'Beranda', 'url' => route('welcomeRoute')],
+        ['label' => 'Detail Lomba', 'url' => ''],
+    ]" />
+
         @php
             $posterUrl = filter_var($lomba->lomba_poster, FILTER_VALIDATE_URL)
                 ? $lomba->lomba_poster
