@@ -20,7 +20,7 @@ class LombaSeeder extends Seeder
             'lomba_nama' => 'Lomba Catur Nasional',
             'lomba_penyelenggara' => Penyelenggara::first()->penyelenggara_id,
             'lomba_kategori' => 'Sains',
-            'lomba_tanggal' => '2024-01-28', // Tanggal pelaksanaan lomba
+            'lomba_tanggal' => '2025-01-28', // Tanggal pelaksanaan lomba
             'lomba_lokasi' => 'Catur Center Jakarta',
             'lomba_kapasitas' => 150,
             'lomba_deskripsi' => 'Kompetisi nasional di bidang sains yang mempertemukan siswa-siswa terbaik dari seluruh Indonesia. Dalam lomba ini, peserta akan diuji kemampuan sains mereka melalui berbagai jenis soal yang menantang dan mengasah kreativitas serta logika. Lomba ini bertujuan untuk mengembangkan minat dan bakat siswa dalam bidang sains serta mempersiapkan mereka menghadapi tantangan global di masa depan.',
@@ -77,7 +77,7 @@ class LombaSeeder extends Seeder
             'lomba_nama' => 'Lomba Band se-SMA',
             'lomba_penyelenggara' => Penyelenggara::first()->penyelenggara_id,
             'lomba_kategori' => 'Seni',
-            'lomba_tanggal' => '2024-02-15', // Tanggal pelaksanaan lomba
+            'lomba_tanggal' => '2025-02-15', // Tanggal pelaksanaan lomba
             'lomba_lokasi' => 'SMA Negeri 1 Jakarta',
             'lomba_kapasitas' => 100,
             'lomba_deskripsi' => 'Lomba band tingkat SMA yang menguji kemampuan vokal dan ekspresi peserta dalam menyanyikan lagu pilihan.',
@@ -132,7 +132,7 @@ class LombaSeeder extends Seeder
             'lomba_nama' => 'Lomba Sepak Bola untuk SD',
             'lomba_penyelenggara' => Penyelenggara::first()->penyelenggara_id,
             'lomba_kategori' => 'Olahraga',
-            'lomba_tanggal' => '2024-03-10', // Tanggal pelaksanaan lomba
+            'lomba_tanggal' => '2025-03-10', // Tanggal pelaksanaan lomba
             'lomba_lokasi' => 'Lapangan Sepak Bola SDN 3 Jakarta',
             'lomba_kapasitas' => 200,
             'lomba_deskripsi' => 'Lomba sepak bola antar sekolah dasar yang menguji keterampilan teknik dasar sepak bola.',
@@ -187,7 +187,7 @@ class LombaSeeder extends Seeder
             'lomba_nama' => 'Lomba Baca Puisi',
             'lomba_penyelenggara' => Penyelenggara::first()->penyelenggara_id,
             'lomba_kategori' => 'Seni',
-            'lomba_tanggal' => '2024-04-05', // Tanggal pelaksanaan lomba
+            'lomba_tanggal' => '2025-04-05', // Tanggal pelaksanaan lomba
             'lomba_lokasi' => 'Gedung Kesenian Jakarta',
             'lomba_kapasitas' => 100,
             'lomba_deskripsi' => 'Lomba baca puisi tingkat nasional yang menguji kemampuan dalam membaca dan menghayati puisi.',
