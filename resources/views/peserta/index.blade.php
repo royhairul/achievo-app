@@ -136,14 +136,24 @@
                                                         $textColor = 'text-green-500';
                                                     }
                                                 @endphp
-                                                <p class="mt-2 text-sm {{ $textColor }}">{{ $lombaDate->format('d F Y') }}</p>
+                                                <p class="mt-2 text-sm font-medium {{ $textColor }}">
+                                                    {{ $lombaDate->translatedFormat('l, d F Y') }}
+                                                </p>
                                             </div>
                                             <div>
-                                                <div
-                                                    class="px-4 border-2 flex justify-center items-center rounded-lg bg-emerald-500/10 text-emerald-500 border-emerald-600/10 gap-2">
-                                                    <span class="material-symbols-outlined text-lg">task_alt</span>
-                                                    <span class="font-semibold">Selesai</span>
-                                                </div>
+                                                @if (!$lombaDate->isPast())
+                                                    <div
+                                                        class="px-4 border-2 flex justify-center items-center rounded-lg bg-sky-500/10 text-sky-500 border-sky-600/10 gap-2">
+                                                        <span class="material-symbols-outlined text-lg">flag</span>
+                                                        <span class="font-semibold">Ongoing</span>
+                                                    </div>
+                                                @else
+                                                    <div
+                                                        class="px-4 border-2 flex justify-center items-center rounded-lg bg-emerald-500/10 text-emerald-500 border-emerald-600/10 gap-2">
+                                                        <span class="material-symbols-outlined text-lg">task_alt</span>
+                                                        <span class="font-semibold">Selesai</span>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
