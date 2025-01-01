@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,5 +21,15 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (UnauthorizedException $e, $request) {
+            return redirect()
+                ->route(
+                    'loginRoute',
+                    ['message' => 'Anda belum login atau tidak memiliki akses'],
+                );
+        });
+        // NotFoundHttpException (404) handling
+        $exceptions->render(function (NotFoundHttpException $e, $request) {
+            return response()->view('errors.404', [], 404);
+        });
     })->create();
