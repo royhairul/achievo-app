@@ -75,9 +75,9 @@
             </span>
         </h2>
         @if (Auth::check())
-            @if (isset($recommendationLomba) && $recommendationLomba->count() > 0)
+            @if (isset($rekomendasiLomba) && $rekomendasiLomba->count() > 0)
                 <div class="mt-2 space-y-8 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0 justify-start">
-                    @foreach ($recommendationLomba as $item)
+                    @foreach ($rekomendasiLomba as $item)
                         <x-lomba-card :item="$item" />
                     @endforeach
                 </div>
