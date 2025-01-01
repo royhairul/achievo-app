@@ -179,7 +179,7 @@ class LombaController extends Controller
         }
 
         $lomba = Lomba::where('lomba_id', $id)->first();
-        $item = FormLomba::where('form_id', $lomba['lomba_form'])->first();
+        $item = FormLomba::where('form_lomba', $lomba->lomba_id)->first();
         $formContent = $item->form_content;
 
         // Mengambil Data Peserta
@@ -216,7 +216,7 @@ class LombaController extends Controller
 
         // // Encode kembali array asosiatif ke dalam JSON
         $item['form_content'] = json_encode($updatedFormData);
-        // return dd($updatedJsonData);
+        // return dd($fillableFields);
 
         // // return dd($item, $lomba);
         return view('lomba.formulir', compact('lomba', 'item'));
@@ -234,7 +234,7 @@ class LombaController extends Controller
                 // Cek apakah nama field ada dalam $fillable
                 foreach ($fillable as $fillableField) {
                     // Jika nama field sama dengan nama input yang ada di $fillable
-                    if ($fillableField === $name) {
+                    if ($fillableField == $name) {
                         // Ganti value field dengan nilai dari jawabanFormulir jika ada
                         $field['value'] = isset($jawabanFormulir[$fillableField]) ? $jawabanFormulir[$fillableField] : '';
                     }
@@ -242,6 +242,7 @@ class LombaController extends Controller
             }
         }
 
+        // return $jawabanFormulir;
         return $formData;
     }
 }
