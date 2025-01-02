@@ -36,8 +36,9 @@ class PencarianController extends Controller
         $rekomendasiLomba = Lomba::
             join('tb_penyelenggara', 'tb_lomba.lomba_penyelenggara', '=', 'tb_penyelenggara.penyelenggara_id')
             ->select('tb_lomba.*', 'penyelenggara_nama')
-            ->where('tb_lomba.lomba_nama', 'like', '%' . $keyword . '%')
-            ->orWhere('tb_penyelenggara.penyelenggara_nama', 'like', '%' . $keyword . '%')
+            ->orderBy('lomba_tanggal', 'desc')
+            // ->where('tb_lomba.lomba_nama', 'like', '%' . $keyword . '%')
+            // ->orWhere('tb_penyelenggara.penyelenggara_nama', 'like', '%' . $keyword . '%')
             ->get();
 
         // Menampilkan hasil ke view
