@@ -187,10 +187,11 @@ class PenyelenggaraController extends Controller
                 'date' => [
                     'required',
                     'date_format:d-m-Y',
-                    'after:' . Carbon::tomorrow()->format('d-m-Y')
+                    'after:' . Carbon::today()->format('d-m-Y')
                 ],
                 'capacity' => 'required|numeric|min:1',
                 'lokasi' => 'required',
+                'jenjang' => 'required',
                 'desc' => 'required',
                 'poster-lomba' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             ],
@@ -202,6 +203,7 @@ class PenyelenggaraController extends Controller
                 'capacity' => 'Kapasitas',
                 'lokasi' => 'Lokasi',
                 'desc' => 'Deskripsi',
+                'jenjang' => 'Jenjang Peserta',
                 'poster-lomba' => 'Poster Lomba',
             ]
         );
@@ -230,11 +232,10 @@ class PenyelenggaraController extends Controller
             'lomba_tanggal' => Carbon::createFromFormat('d-m-Y', $request->date)->format('Y-m-d'),
             'lomba_kapasitas' => $request->capacity,
             'lomba_lokasi' => $request->lokasi,
+            'lomba_jenjang' => $request->jenjang,
             'lomba_deskripsi' => $request->desc,
             'lomba_poster' => $imageName, // Simpan nama file yang unik
         ];
-
-
 
         session()->put('dataLomba', $dataLomba);
         return redirect()->route('pylCreateFormRoute');
