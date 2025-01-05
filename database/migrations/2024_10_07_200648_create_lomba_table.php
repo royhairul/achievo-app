@@ -16,9 +16,10 @@ return new class extends Migration {
             $table->string('lomba_penyelenggara');
             $table->string('lomba_kategori'); // Kategori lomba
             $table->string('lomba_deskripsi', 500); // Deskripsi lomba
-            $table->date('lomba_tanggal'); // Deskripsi lomba
+            $table->date('lomba_tanggal'); // tanggal lomba
             $table->string('lomba_lokasi'); // Lokasi lomba
             $table->integer('lomba_kapasitas'); // Kapasitas peserta lomba
+            $table->string('lomba_jenjang'); // jenjang Lomba
             $table->string('lomba_poster', 500)->nullable(); // Poster lomba (opsional)
             $table->string('lomba_form')->nullable(); // File terkait lomba (opsional)
             $table->timestamps();
