@@ -31,7 +31,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body class="relative bg-white">
+<body class="relative bg-white text-sky-950">
     @yield('body')
 </body>
 
