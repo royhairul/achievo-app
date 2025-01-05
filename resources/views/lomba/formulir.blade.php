@@ -7,17 +7,15 @@
     <x-navbar type='eksplorasi' is-login="{{ Auth::check() }}"></x-navbar>
     <div class="page-padding">
         <x-breadcrumbs :items="[
-        ['label' => 'Beranda', 'url' => route('welcomeRoute')],
+        ['label' => 'Beranda', 'url' => route('pencarianRoute')],
         ['label' => 'Detail Lomba', 'url' => route('lombaDetailRoute', $lomba->lomba_id)],
         ['label' => 'Formulir', 'url' => ''],
     ]" />
         <div class="flex items-center justify-between">
             <div>
-                <div class="mb-2">
-                    <!-- <h2 class="text-sky-950 font-semibold text-xl">Mendaftar Lomba</h2> -->
-                    <h2 class="text-sky-700 font-semibold text-2xl">{{ $lomba->lomba_nama }}</h2>
-                </div>
                 <div class="mb-4">
+                    <!-- <h2 class="text-sky-950 font-semibold text-xl">Mendaftar Lomba</h2> -->
+                    <h2 class="text-sky-950 font-semibold text-2xl tracking-tight">{{ $lomba->lomba_nama }}</h2>
                     <p class="text-sm text-sky-950 opacity-60">
                         Isikan formulir berikut untuk mengikuti lomba.
                     </p>
@@ -36,7 +34,7 @@
         @endif
         <input type="hidden" name="form-render-data" id="form-render-data" value="{{ $item['form_content'] }}">
         <form method="POST" action="{{ route('lombaStoreFormRoute', $lomba->lomba_id) }}" enctype="multipart/form-data"
-            class="!text-sky-950/80">
+            class="!text-sky-950">
             @csrf
             <div id="form-render" class=""></div>
             <div class="col-span-2">
@@ -61,7 +59,5 @@
         formData: $('#form-render-data').val()
     }
     const renderForm = $('#form-render').formRender(formRenderOptions)
-
-    console.log(renderForm.userData)
 </script>
 @endsection

@@ -8,20 +8,22 @@
 
     <div class="page-padding mb-2">
         <x-breadcrumbs :items="[
-        ['label' => 'Beranda', 'url' => route('welcomeRoute')],
+        ['label' => 'Beranda', 'url' => route('pencarianRoute')],
         ['label' => 'Detail Lomba', 'url' => ''],
     ]" />
+        <div class="flex flex-col lg:flex-row gap-6 gap-x-10 ">
+            <div class="basis-2/3 wrapper">
+                @php
+                    $posterUrl = filter_var($lomba->lomba_poster, FILTER_VALIDATE_URL)
+                        ? $lomba->lomba_poster
+                        : asset('images/' . $lomba->lomba_poster);
+                @endphp
+                <img src="{{ $posterUrl }}" alt="{{ $lomba->lomba_nama }}"
+                    class="w-full rounded-md border-1 top-0 left-0 object-cover object-center">
 
-        @php
-            $posterUrl = filter_var($lomba->lomba_poster, FILTER_VALIDATE_URL)
-                ? $lomba->lomba_poster
-                : asset('images/' . $lomba->lomba_poster);
-        @endphp
-        <img src="{{ $posterUrl }}" alt="{{ $lomba->lomba_nama }}"
-            class="w-full lg:w-1/2 rounded-md border-1 top-0 left-0 object-cover object-center">
-        <div class="flex flex-col lg:flex-row gap-6">
-            <div class="basis-2/3 wrapper py-10">
-                <h2 class="text-2xl font-semibold text-sky-950 tracking-tight">{{ $lomba->lomba_nama }}</h2>
+                <h2 class="mt-2 text-xl lg:text-2xl font-semibold text-sky-950 tracking-tight">
+                    {{ $lomba->lomba_nama }}
+                </h2>
                 <p class="text-sm text-sky-950">
                     Diselenggarakan oleh
                     <a href="" class="text-sky-500 font-semibold">{{ $lomba->penyelenggara_nama }}</a>
@@ -56,17 +58,17 @@
                 <div>
                     <div id="lomba-deskripsi">
                         <h2
-                            class="mt-10 mb-5 px-2 text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
+                            class="mt-4 mb-2 px-2 text-base lg:text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
                             Deskripsi
                         </h2>
-                        <p class="text-base font-normal text-sky-950 opacity-80">
+                        <p class="text-sm lg:text-base font-normal text-sky-950 opacity-80">
                             "{{ $lomba->lomba_deskripsi }}"
                         </p>
                     </div>
 
                     <div id="lomba-persyaratan" class="hidden">
                         <h2
-                            class="mt-10 mb-5 px-2 text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
+                            class="mt-4 mb-5 px-2 text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
                             Persyaratan
                         </h2>
 
@@ -88,7 +90,7 @@
 
                     <div id="lomba-hadiah" class="hidden">
                         <h2
-                            class="mt-10 mb-5 px-2 text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
+                            class="mt-4 mb-5 px-2 text-lg font-semibold rounded-l-md text-sky-950 bg-gradient-to-r from-0% from-sky-400/50 to-60% to-transparent">
                             Rating</h2>
 
                         <!-- Tampilkan rating bintang -->
@@ -131,7 +133,7 @@
                 </div>
             </div>
 
-            <div class="basis-1/3 wrapper py-10">
+            <div class="basis-1/3 wrapper">
                 <h2 class="text-xl font-semibold text-sky-950">Jadwal Pelaksanaan</h2>
 
                 <ul role="list" class="mt-4 divide-y divide-gray-100 rounded-md border border-gray-200">
