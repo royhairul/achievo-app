@@ -7,7 +7,7 @@
     <div class="p-20 bg-sky-950 w-1/3 h-screen hidden lg:flex flex-col justify-between">
         <div class="logo">
             <a href="/">
-                <img class="h-5 w-auto" src="{{ asset('storage/achievo-logo.svg') }}" alt="">
+                <img class="h-5 w-auto" src="{{ asset('storage/assets/achievo-logo.svg') }}" alt="">
             </a>
         </div>
         <div class="headline text-white">
