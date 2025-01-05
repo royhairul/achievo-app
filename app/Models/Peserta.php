@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
+use Carbon\Carbon;
 
 class Peserta extends Model
 {
@@ -34,4 +35,12 @@ class Peserta extends Model
 
     // Tipe primary key jika bukan integer (opsional, bisa dihapus)
     protected $keyType = 'int';
+
+    // Mendapatkan umur peserta
+    public function getAge()
+    {
+        $birthDate = Carbon::parse($this->peserta_tanggallahir);
+        $age = (int) $birthDate->diffInYears(now());
+        return $age;
+    }
 }

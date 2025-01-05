@@ -25,6 +25,7 @@ class Lomba extends Model
         'lomba_kapasitas',
         'lomba_deskripsi',
         'lomba_poster',
+        'lomba_jenjang',
         'lomba_form',
     ];
 
