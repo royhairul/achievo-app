@@ -1,9 +1,9 @@
 <header class="page-padding">
-    <nav class="navbar flex items-center justify-between pt-10" aria-label="Global">
+    <nav class="navbar flex items-center justify-between pt-10 px-0" aria-label="Global">
         {{-- Logo and Dropdown for Mobile --}}
         <div class="navbar-start flex lg:flex-1">
             <div class="dropdown">
-                <button tabindex="0" role="button" class="btn btn-ghost lg:hidden mr-2 -ml-4">
+                <button tabindex="0" role="button" class="btn btn-ghost ml-0 lg:hidden mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
