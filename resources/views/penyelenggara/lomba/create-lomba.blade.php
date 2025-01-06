@@ -4,7 +4,11 @@
 
 @section('content')
 <div class="p-4 sm:ml-64 min-h-screen">
-    <div class="p-4 pt-8 rounded-lg mt-14 gap-8">
+    <div class="p-4 mt-14">
+        <x-breadcrumbs :items="[
+            ['label' => 'Daftar Lomba', 'url' => route('penyelenggaraLombaRoute')],
+            ['label' => 'Buat Lomba Baru', 'url' => ''],
+        ]" />
         <div class="mb-1">
             <h2 class="text-sky-500 font-semibold text-2xl">Buat Lomba</h2>
         </div>
