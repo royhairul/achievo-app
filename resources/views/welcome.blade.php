@@ -31,7 +31,7 @@
                 </div>
                 <div class="flex flex-col items-center text-center">
                     <h1 class="text-4xl lg:text-5xl font-semibold tracking-tight text-sky-950">
-                        Ayo Eksplorasi
+                        Ayo Eksplorasi Sekarang!
                         <br>
                         Tingkatkan
                         <span class="text-yellow-400 drop-shadow-sm">
