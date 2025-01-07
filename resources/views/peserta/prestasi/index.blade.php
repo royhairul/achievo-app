@@ -19,7 +19,7 @@
         <p class="text-sm text-sky-950 opacity-60">
                         Berikut daftar prestasi anda.
                     </p>
-        <a href="" style="width: 200px; text-align: center;"
+        <a href="{{ route('pesertaPrestasiCreateRoute')}}" style="width: 200px; text-align: center;"
             class="inline-block mt-4 rounded-md bg-sky-500 px-4 py-2 text-base font-medium text-white hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-200 hover:shadow-lg shadow-sky-400 transition-all w-auto">
             Tambahkan Prestasi
         </a>
