@@ -10,9 +10,15 @@
 <div class="bg-white mb-10">
     <x-navbar isLogin='true' data-user="{{ $dataPeserta }}"></x-navbar>
 
-    <div class="page-padding flex flex-col gap-2 py-8 mt-10">
-        <h2 class="text-3xl font-bold text-sky-950 tracking-tight leading-relaxed">Daftar Prestasi</h2>
-
+    <div class="page-padding min-h-screen flex flex-col gap-2 py-8 mt-10">
+    <x-breadcrumbs :items="[
+        ['label' => 'Beranda', 'url' => route('pencarianRoute')],
+        ['label' => 'Daftar Prestasi', 'url' => ''],
+    ]" />
+        <h2 class="text-3xl font-bold text-sky-950 tracking-tight">Daftar Prestasi</h2>
+        <p class="text-sm text-sky-950 opacity-60">
+                        Berikut daftar prestasi anda.
+                    </p>
         <a href="" style="width: 200px; text-align: center;"
             class="inline-block mt-4 rounded-md bg-sky-500 px-4 py-2 text-base font-medium text-white hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-200 hover:shadow-lg shadow-sky-400 transition-all w-auto">
             Tambahkan Prestasi

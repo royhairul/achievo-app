@@ -35,6 +35,7 @@
                 <form method="POST" action="{{ route('pesertaPrestasiStoreRoute') }}" enctype="multipart/form-data"
                     class="grid sm:grid-cols-2 grid-cols-1 gap-5 mt-5">
                     @csrf
+                    {{-- Nomor Peringkat --}}
                     <div>
                         <label for="nama" class="block text-sm font-medium leading-6 text-sky-950">
                             Nama Lomba
