@@ -24,6 +24,7 @@ var options = {
             type: "select",
             name: "peserta_gender",
             subtype: "gender",
+            placeholder: "Pilih Jenis Kelamin...",
             values: [
                 {
                     label: 'Pria',
@@ -42,16 +43,6 @@ var options = {
             name: "peserta_tanggallahir",
             subtype: "tanggallahir",
             placeholder: "Masukkan Umur Anda...",
-            values: [
-                {
-                    label: 'Pria',
-                    value: 'Pria',
-                },
-                {
-                    label: 'Wanita',
-                    value: 'Wanita',
-                }
-            ],
             icon: "<span class='material-symbols-outlined text-lg'>fit_page_height</span>",
         },
         {
@@ -128,16 +119,6 @@ var options = {
                     name: "peserta_tanggallahir",
                     subtype: "tanggallahir",
                     placeholder: "Masukkan Umur Anda...",
-                    values: [
-                        {
-                            label: 'Pria',
-                            value: 'Pria',
-                        },
-                        {
-                            label: 'Wanita',
-                            value: 'Wanita',
-                        }
-                    ],
                     icon: "<span class='material-symbols-outlined text-lg'>fit_page_height</span>",
                 },
                 {
