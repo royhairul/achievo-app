@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LombaController;
 use App\Http\Controllers\PencarianController;
 use App\Http\Controllers\PenyelenggaraFormController;
+use App\Http\Controllers\PenyelenggaraLombaController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PenyelenggaraController;
@@ -63,10 +64,10 @@ Route::prefix('peserta')->middleware(['role:peserta'])->group(function () {
 // Routes for Penyelenggara (User Role: 'penyelenggara')
 Route::prefix('penyelenggara')->middleware(['role:penyelenggara'])->group(function () {
     Route::get('/', [PenyelenggaraController::class, 'index'])->name('penyelenggaraIndexRoute');
-    Route::get('/lomba', [PenyelenggaraController::class, 'listLomba'])->name('penyelenggaraLombaRoute');
-    Route::get('/lomba/{id}/detail', [PenyelenggaraController::class, 'detailLomba'])->name('penyelenggaraDetailLombaRoute');
-    Route::get('/lomba/create', [PenyelenggaraController::class, 'createLomba'])->name('penyelenggaraCreateLombaRoute');
-    Route::post('/lomba/create', [PenyelenggaraController::class, 'storeLomba'])->name('penyelenggaraStoreLombaRoute');
+    Route::get('/lomba', [PenyelenggaraLombaController::class, 'listLomba'])->name('penyelenggaraLombaRoute');
+    Route::get('/lomba/{id}/detail', [PenyelenggaraLombaController::class, 'detailLomba'])->name('penyelenggaraDetailLombaRoute');
+    Route::get('/lomba/create', [PenyelenggaraLombaController::class, 'createLomba'])->name('penyelenggaraCreateLombaRoute');
+    Route::post('/lomba/create', [PenyelenggaraLombaController::class, 'storeLomba'])->name('penyelenggaraStoreLombaRoute');
     Route::get('/show/beri-sertifikat/{peserta_id}/{lomba_id}', [PrestasiController::class, 'showFormberiSertifikat'])->name('ShowFormBeriSertifikatPeserta');
     Route::post('/beri-sertifikat', [PrestasiController::class, 'beriSertifikat'])->name('BeriSertifikatPeserta');
     Route::get('/lomba/formulir/create', [PenyelenggaraFormController::class, 'index'])->name('pylCreateFormRoute');
