@@ -205,12 +205,14 @@ class PesertaController extends Controller
             'tanggal' => [
                 'required',
                 'date',
-                function ($attribute, $value, $fail) {
-                    // Memvalidasi apakah tanggal minimal adalah kemarin atau sebelumnya
-                    if (\Carbon\Carbon::parse($value)->isAfter(\Carbon\Carbon::yesterday())) {
-                        $fail('Batas minimal waktu perlombaan prestasi adalah kemarin atau sebelumnya.');
-                    }
-                },
+                'date_format:d-m-Y',
+                'min:' . Carbon::today()->format('d-m-Y'),
+                // function ($attribute, $value, $fail) {
+                //     // Memvalidasi apakah tanggal minimal adalah kemarin atau sebelumnya
+                //     if (Carbon::parse($value)->isAfter(\Carbon\Carbon::yesterday())) {
+                //         $fail('Batas minimal waktu perlombaan prestasi adalah kemarin atau sebelumnya.');
+                //     }
+                // },
             ],
             'penyelenggara' => 'required|string|max:255',
             'nomor' => 'required|string|max:255',
@@ -233,7 +235,7 @@ class PesertaController extends Controller
         $pesertaEmail = str_replace('@', '_', strtolower($peserta->peserta_email));
         $tanggalLomba = $request->tanggal;
         // Menambahkan waktu sekarang (tanggal, jam, menit, detik) ke penamaan file
-        $currentTimestamp = \Carbon\Carbon::now()->format('Ymd_His');
+        $currentTimestamp = Carbon::now()->format('Ymd_His');
 
         $fileName = "{$nominasi}_{$namaLomba}_{$pesertaEmail}_{$tanggalLomba}_{$currentTimestamp}.{$request->file('sertifikat')->getClientOriginalExtension()}";
 
@@ -253,7 +255,7 @@ class PesertaController extends Controller
             'prestasi_judul' => $request->nama,
             'prestasi_nominasi' => $request->nominasi,
             'prestasi_kategori' => $request->kategori,
-            'prestasi_tanggal' => \Carbon\Carbon::createFromFormat('d-m-Y', $request->tanggal)->format('Y-m-d'),
+            'prestasi_tanggal' => Carbon::createFromFormat('d-m-Y', $request->tanggal)->format('Y-m-d'),
             'prestasi_peserta' => $peserta->peserta_id,
             'prestasi_penyelenggara' => $request->penyelenggara,
             'created_at' => now(),

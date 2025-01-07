@@ -235,8 +235,15 @@ class LombaController extends Controller
                 foreach ($fillable as $fillableField) {
                     // Jika nama field sama dengan nama input yang ada di $fillable
                     if ($fillableField == $name) {
+                        
                         // Ganti value field dengan nilai dari jawabanFormulir jika ada
                         $field['value'] = isset($jawabanFormulir[$fillableField]) ? $jawabanFormulir[$fillableField] : '';
+                        // Jika 'peserta_tanggallahir' maka diisi umur
+                        if ($fillableField == 'peserta_tanggallahir') {
+                            $umur = Carbon::parse($jawabanFormulir[$fillableField])->age;
+                            $field['value'] = $umur;
+                            // return dd($umur);
+                        }
                     }
                 }
             }
@@ -244,5 +251,6 @@ class LombaController extends Controller
 
         // return $jawabanFormulir;
         return $formData;
+        // return dd($formData);
     }
 }
