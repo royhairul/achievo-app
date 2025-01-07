@@ -19,7 +19,10 @@
     </a>
 
     <!-- Deskripsi -->
-    <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
-        class="mt-2 block text-lg lg:text-xl font-semibold text-sky-500 tracking-tight leading-6">{{ $item->lomba_nama }}</a>
-    <p class="text-sm text-sky-950">{{ $item->penyelenggara_nama }}</p>
+    <div class="mt-2">
+        <p class="text-xs rounded-md text-white bg-sky-700 w-max px-1">{{ $item->lomba_jenjang }}</p>
+        <a href="{{ route('lombaDetailRoute', ['id' => $item->lomba_id]) }}"
+            class="block text-lg lg:text-xl font-semibold text-sky-500 tracking-tight leading-6">{{ $item->lomba_nama }}</a>
+        <p class="text-sm text-sky-950">{{ $item->penyelenggara_nama }}</p>
+    </div>
 </div>
