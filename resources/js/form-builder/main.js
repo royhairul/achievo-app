@@ -26,12 +26,12 @@ var options = {
             subtype: "gender",
             values: [
                 {
-                    label: 'Laki-laki',
-                    value: 'Laki-laki',
+                    label: 'Pria',
+                    value: 'Pria',
                 },
                 {
-                    label: 'Perempuan',
-                    value: 'Perempuan',
+                    label: 'Wanita',
+                    value: 'Wanita',
                 }
             ],
             icon: "<span class='material-symbols-outlined text-lg'>male</span>",
@@ -44,12 +44,12 @@ var options = {
             placeholder: "Masukkan Umur Anda...",
             values: [
                 {
-                    label: 'Laki-laki',
-                    value: 'Laki-laki',
+                    label: 'Pria',
+                    value: 'Pria',
                 },
                 {
-                    label: 'Perempuan',
-                    value: 'Perempuan',
+                    label: 'Wanita',
+                    value: 'Wanita',
                 }
             ],
             icon: "<span class='material-symbols-outlined text-lg'>fit_page_height</span>",
@@ -112,12 +112,12 @@ var options = {
                     subtype: "gender",
                     values: [
                         {
-                            label: 'Laki-laki',
-                            value: 'Laki-laki',
+                            label: 'Pria',
+                            value: 'Pria',
                         },
                         {
-                            label: 'Perempuan',
-                            value: 'Perempuan',
+                            label: 'Wanita',
+                            value: 'Wanita',
                         }
                     ],
                     icon: "<span class='material-symbols-outlined text-lg'>male</span>",
@@ -130,12 +130,12 @@ var options = {
                     placeholder: "Masukkan Umur Anda...",
                     values: [
                         {
-                            label: 'Laki-laki',
-                            value: 'Laki-laki',
+                            label: 'Pria',
+                            value: 'Pria',
                         },
                         {
-                            label: 'Perempuan',
-                            value: 'Perempuan',
+                            label: 'Wanita',
+                            value: 'Wanita',
                         }
                     ],
                     icon: "<span class='material-symbols-outlined text-lg'>fit_page_height</span>",
