@@ -10,6 +10,8 @@
         <title>{{ config('app.name') }}</title>
     @endif
 
+    @notifyCss
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
 
@@ -32,7 +34,11 @@
 </head>
 
 <body class="relative bg-white text-sky-950">
+    <x-notify::notify />
+
     @yield('body')
+
+    @notifyJs
 </body>
 
 </html>
