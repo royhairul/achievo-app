@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('lomba_nama'); // Nama lomba
             $table->string('lomba_penyelenggara');
             $table->string('lomba_kategori'); // Kategori lomba
-            $table->string('lomba_deskripsi', 500); // Deskripsi lomba
+            $table->longText('lomba_deskripsi'); // Deskripsi lomba
             $table->date('lomba_tanggal'); // tanggal lomba
             $table->string('lomba_lokasi'); // Lokasi lomba
             $table->integer('lomba_kapasitas'); // Kapasitas peserta lomba
