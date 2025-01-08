@@ -65,7 +65,15 @@ class SertifikatController extends Controller
             // Edit status jawaban_hasSertifikat
             $update = $tbJawaban->update(['jawaban_hasSertifikat' => true]);
 
-            return redirect()->route('penyelenggaraLombaRoute');
+            if ($tbSertifikat && $update) {
+                notify()->success('Sertifikat berhasil dibuat.', 'Berhasil');
+                return redirect()->route('penyelenggaraLombaRoute');
+            } else {
+                notify()->error('Sertifikat gagal dibuat.', 'Gagal');
+                return redirect()->route('penyelenggaraLombaRoute');
+            }
+
+            // return redirect()->route('penyelenggaraLombaRoute');
         }
     }
 }

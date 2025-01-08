@@ -114,6 +114,7 @@ class RegisterController extends Controller
             $dbAkun = User::create($dataAkunPeserta)->syncRoles('peserta');
         }
 
+        notify()->success('Silahkan Login dengan Akun Anda!', 'Berhasil Mendaftar Akun Peserta');
         return redirect()->route('loginRoute');
     }
 
@@ -195,6 +196,7 @@ class RegisterController extends Controller
             $dbAkun = User::create($dataAkunPenyelenggara)->syncRoles('penyelenggara');
         }
 
+        notify()->success('Silahkan Login dengan Akun Anda!', 'Berhasil Mendaftar Akun Penyelenggara');
         return redirect()->route('loginRoute');
     }
 }

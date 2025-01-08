@@ -49,8 +49,10 @@ class LoginController extends Controller
 
             // Cek tipe rule (peserta atau penyelenggara)
             if ($user->hasRole('penyelenggara')) {
+                notify()->success('Welcome to Penyelenggara Lomba! 🎖️', 'Berhasil Login');
                 return redirect()->route('penyelenggaraIndexRoute');
             } else {
+                notify()->success('Welcome to Peserta Lomba! ⚡️', 'Berhasil Login');
                 return redirect()->route('pesertaIndexRoute');
             }
         } else {
