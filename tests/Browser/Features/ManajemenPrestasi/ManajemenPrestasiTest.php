@@ -186,8 +186,8 @@ class ManajemenPrestasiTest extends DuskTestCase
                 ->type('tanggal', today()->subDay()->format('d-m-Y')) // Pengisian Tanggal
                 ->select('kategori', 'Akademik')
                 ->type('nomor', 'INST-XYZ-2025/0045') // Nomor sertifikat
-                ->select('nominasi', 'Partisipan')
-                ->attach('sertifikat', '');
+                ->select('nominasi', 'Partisipan');
+                // ->attach('sertifikat', null);
 
             $browser->press('Tambah Prestasi');
             $browser->screenshot('/prestasi/TC_PRESTASI_008_RESULT');
