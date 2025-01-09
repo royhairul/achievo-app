@@ -154,8 +154,6 @@ class PencarianController extends Controller
                     ->select('tb_lomba.*', 'penyelenggara_nama')
                     // ->whereIn('lomba_jenjang', [$dataPeserta->peserta_jenjang ?? '', 'Umum'])
                     ->where('lomba_tanggal', '>=', Carbon::tomorrow())
-                    ->groupBy('tb_lomba.lomba_id')
-                    ->orderByRaw('COUNT(tb_jawaban.jawaban_peserta) DESC')
                     ->get();
             }
         } else {
