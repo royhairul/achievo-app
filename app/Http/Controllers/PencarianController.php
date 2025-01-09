@@ -145,14 +145,14 @@ class PencarianController extends Controller
                     join('tb_penyelenggara', 'tb_lomba.lomba_penyelenggara', '=', 'tb_penyelenggara.penyelenggara_id')
                     ->select('tb_lomba.*', 'penyelenggara_nama')
                     ->where('lomba_kategori', $kategoriDiikuti)
-                    ->whereIn('lomba_jenjang', [$dataPeserta->peserta_jenjang ?? '', 'Umum'])
+                    // ->whereIn('lomba_jenjang', [$dataPeserta->peserta_jenjang ?? '', 'Umum'])
                     ->where('lomba_tanggal', '>=', Carbon::tomorrow())
                     ->get();
             } else {
                 $rekomendasiLomba = Lomba::
                     join('tb_penyelenggara', 'tb_lomba.lomba_penyelenggara', '=', 'tb_penyelenggara.penyelenggara_id')
                     ->select('tb_lomba.*', 'penyelenggara_nama')
-                    ->whereIn('lomba_jenjang', [$dataPeserta->peserta_jenjang ?? '', 'Umum'])
+                    // ->whereIn('lomba_jenjang', [$dataPeserta->peserta_jenjang ?? '', 'Umum'])
                     ->where('lomba_tanggal', '>=', Carbon::tomorrow())
                     ->groupBy('tb_lomba.lomba_id')
                     ->orderByRaw('COUNT(tb_jawaban.jawaban_peserta) DESC')
